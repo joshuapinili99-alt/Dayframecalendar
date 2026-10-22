@@ -1,0 +1,964 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="theme-color" content="#f4f6f0">
+<meta name="dayframe-version" content="1.14.0">
+<meta name="description" content="Dayframe, a calm calendar and task planner.">
+<meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Dayframe"><meta name="apple-mobile-web-app-status-bar-style" content="default"><link rel="manifest" href="./manifest.webmanifest"><link rel="apple-touch-icon" href="./icons/apple-touch-icon.png"><link rel="icon" type="image/svg+xml" href="./icons/dayframe-logo.svg"><link rel="icon" type="image/png" sizes="192x192" href="./icons/icon-192.png">
+<title>Dayframe · Personal calendar and tasks</title>
+<style>
+:root{--bg:#f4f6f0;--panel:#fff;--panel2:#f8faf6;--text:#28332b;--muted:#748072;--line:#e4e9e0;--accent:#63836b;--accent-dark:#456b50;--accent-soft:#e5eee4;--shadow:0 18px 52px rgba(33,48,35,.10);--red:#c54b4b;--red-bg:#fae8e6;--orange:#c17a32;--orange-bg:#fff0df;--blue:#4e7eaf;--blue-bg:#e9f1fb;--green:#4c8058;--green-bg:#e6f3e7;--radius:18px;}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--text);background:var(--bg)}body{font-size:14px;line-height:1.45}button,input,textarea,select{font:inherit}button{cursor:pointer}button:disabled{opacity:.55;cursor:not-allowed}button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px solid #9dbfa2;outline-offset:2px}a{color:var(--accent-dark)}.hidden{display:none!important}.file-origin-alert{padding:12px 16px;background:#fff2d9;color:#684a17;border-bottom:1px solid #e7cc91;font-size:13px;text-align:center}.file-origin-alert strong{display:block;margin-bottom:2px}.quiet{color:var(--muted)}.small{font-size:12px}.field-help{color:var(--muted);font-size:12px;display:block;margin-top:5px}.auth-screen{min-height:100vh;display:grid;place-items:center;padding:28px 16px;background:radial-gradient(ellipse at 20% 8%,rgba(220,234,219,.7),transparent 38%),radial-gradient(ellipse at 90% 85%,rgba(231,223,244,.5),transparent 34%),var(--bg)}.auth-card{width:min(100%,430px);background:var(--panel);border:1px solid var(--line);border-radius:26px;padding:30px;box-shadow:var(--shadow)}.brand-row{display:flex;align-items:center;gap:10px}.brand-mark{width:38px;height:38px;border-radius:13px;background:var(--accent-soft);color:var(--accent-dark);display:grid;place-items:center}.brand-name{font-size:22px;font-weight:750;letter-spacing:-.7px}.brand-name span{color:var(--accent)}.auth-art{height:106px;position:relative;margin:20px auto 16px;max-width:250px;display:grid;place-items:center}.auth-art-back{position:absolute;width:215px;height:90px;left:14px;top:8px;display:flex;gap:7px;align-items:end;justify-content:center;opacity:.85}.auth-art-back i{display:block;width:54px;border-radius:10px 10px 4px 4px;background:#eef2ea;height:60px}.auth-art-back i:nth-child(2){height:80px;background:#f0e9f8}.auth-art-back i:nth-child(3){height:48px;background:#fae7df}.auth-art-front{z-index:1;background:#fff;border:1px solid #e3e8df;border-radius:13px;width:120px;height:86px;padding:9px;box-shadow:0 9px 26px #3a50351a;transform:rotate(-3deg)}.art-date{float:left;width:29px;height:38px;background:#e5eee4;border-radius:7px;text-align:center;color:#42684a;padding-top:3px}.art-date small{display:block;font-size:8px;font-weight:700}.art-date strong{display:block;font-size:15px;line-height:16px}.art-bars{margin-left:36px;padding-top:3px;display:grid;gap:6px}.art-bars i{display:block;height:9px;border-radius:3px;background:#e6eee2}.art-bars i:nth-child(2){width:78%;background:#eee8f7}.art-bars i:nth-child(3){width:88%;background:#fae7df}.auth-kicker{font-size:10px;font-weight:800;letter-spacing:1.65px;color:var(--accent);text-align:center;margin-top:8px}.auth-card h1{text-align:center;font-size:27px;line-height:1.2;letter-spacing:-.8px;margin:8px 0}.auth-subtitle{text-align:center;color:var(--muted);font-size:13px;margin:0 0 18px}.auth-tabs{display:grid;grid-template-columns:1fr 1fr;padding:4px;background:var(--panel2);border:1px solid var(--line);border-radius:12px;margin:0 0 14px}.auth-tabs button{border:0;background:transparent;color:var(--muted);padding:9px 8px;border-radius:9px;font-weight:650}.auth-tabs button.active{background:var(--panel);color:var(--text);box-shadow:0 2px 6px #25352212}.google-button,.primary-button,.secondary-button,.danger-button,.icon-button,.text-button{border:0;border-radius:11px;display:inline-flex;align-items:center;justify-content:center;gap:9px;font-weight:650;transition:background .15s,transform .15s}.google-button{width:100%;height:44px;border:1px solid var(--line);background:var(--panel);color:var(--text)}.google-button:hover,.secondary-button:hover{background:var(--panel2)}.google-button svg{width:18px;height:18px}.auth-or{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:11px;margin:16px 0}.auth-or:before,.auth-or:after{content:"";height:1px;background:var(--line);flex:1}.form-stack{display:grid;gap:12px}.field-label{display:block;font-size:12px;font-weight:700;color:var(--text)}.input,.select,.textarea{display:block;width:100%;margin-top:6px;border:1px solid var(--line);border-radius:10px;padding:10px 11px;background:var(--panel);color:var(--text);min-width:0}.input:focus,.select:focus,.textarea:focus{border-color:#97b79b}.textarea{resize:vertical;min-height:76px}.remember-row{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text);cursor:pointer}.remember-row input{accent-color:var(--accent);width:15px;height:15px}.remember-row small{margin-left:auto;color:var(--muted)}.remember-help{margin:-6px 0 0 23px;font-size:11px;color:var(--muted)}.text-button{background:transparent;color:var(--accent-dark);padding:0;font-size:12px;justify-self:start}.primary-button{background:var(--accent);color:white;padding:11px 14px}.primary-button:hover{background:var(--accent-dark)}.primary-button.wide{width:100%;min-height:44px}.secondary-button{background:var(--panel);border:1px solid var(--line);color:var(--text);padding:9px 12px}.danger-button{background:var(--red-bg);color:var(--red);padding:9px 12px}.auth-error,.auth-notice{font-size:12px;padding:10px 12px;border-radius:10px;margin:0}.auth-error{background:var(--red-bg);color:#8d3030}.auth-notice{background:var(--accent-soft);color:var(--accent-dark)}.auth-foot{text-align:center;border-top:1px solid var(--line);margin-top:18px;padding-top:14px;color:var(--muted);font-size:11px}.auth-disclaimer{font-size:10px;color:var(--muted);text-align:center;line-height:1.5;margin:12px 0 0}
+#app{min-height:100vh}.topbar{height:68px;display:flex;align-items:center;gap:14px;padding:0 22px;border-bottom:1px solid var(--line);background:var(--panel);position:sticky;top:0;z-index:30}.topbar .brand-name{font-size:20px}.topbar-spacer{flex:1}.sync-status{font-size:11px;color:var(--muted);white-space:nowrap;max-width:145px;overflow:hidden;text-overflow:ellipsis;cursor:pointer;flex:0 1 auto}.sync-status[data-state=ok]{color:var(--green)}.sync-status[data-state=busy]{color:var(--blue)}.sync-status[data-state=error]{color:var(--red)}@media(max-width:760px){.sync-status{display:inline-block;max-width:78px;font-size:10px;line-height:1.15;white-space:normal;text-align:center;flex:0 1 78px}.topbar .topbar-spacer{flex:1 1 3px;min-width:0}#theme-button{font-size:0;width:34px;height:34px;padding:0}#theme-button::before{content:"◐";font-size:16px}#signout-button{font-size:0;width:34px;height:34px;padding:0}#signout-button::before{content:"↪";font-size:16px}}.icon-button{width:37px;height:37px;background:transparent;color:var(--muted);font-size:19px}.icon-button:hover{background:var(--panel2);color:var(--text)}.top-action{background:var(--panel);border:1px solid var(--line);color:var(--text);border-radius:10px;padding:9px 11px;font-size:12px;font-weight:650;white-space:nowrap}.avatar{width:35px;height:35px;border-radius:50%;border:0;background:var(--accent-soft);color:var(--accent-dark);font-weight:800;overflow:hidden;display:grid;place-items:center}.avatar img{width:100%;height:100%;object-fit:cover}.user-name{background:transparent;border:0;padding:3px 0;color:var(--text);font:inherit;font-size:12px;max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.layout{display:grid;grid-template-columns:220px minmax(0,1fr) 270px;min-height:calc(100vh - 68px);transition:grid-template-columns .18s}.layout.sidebar-collapsed{grid-template-columns:68px minmax(0,1fr) 270px}.layout.details-hidden{grid-template-columns:220px minmax(0,1fr) 0}.layout.sidebar-collapsed.details-hidden{grid-template-columns:68px minmax(0,1fr) 0}.sidebar{padding:18px 12px;background:var(--panel);border-right:1px solid var(--line);overflow:hidden}.nav-label{color:var(--muted);font-size:10px;font-weight:800;letter-spacing:1.3px;padding:10px 10px 7px}.nav-link{display:flex;align-items:center;gap:11px;padding:10px;border-radius:11px;color:var(--muted);text-decoration:none;border:0;background:transparent;width:100%;text-align:left;margin:2px 0;font-weight:600;font-size:13px;white-space:nowrap}.nav-link:hover{background:var(--panel2);color:var(--text)}.nav-link.active{background:var(--accent-soft);color:var(--accent-dark)}.nav-icon{width:22px;display:inline-flex;justify-content:center;font-size:16px}.sidebar-collapsed .nav-link{justify-content:center;padding:11px 7px}.sidebar-collapsed .nav-link .nav-text,.sidebar-collapsed .nav-label,.sidebar-collapsed .folder-list,.sidebar-collapsed .sidebar-hint{display:none}.sidebar-collapsed .nav-icon{width:auto}.sidebar-bottom{margin-top:22px;border-top:1px solid var(--line);padding-top:12px}.workspace{padding:23px 22px 38px;min-width:0;overflow:hidden}.page-heading{display:flex;align-items:flex-start;gap:12px;margin-bottom:17px}.page-heading h1{font-size:24px;letter-spacing:-.6px;line-height:1.25;margin:0;font-weight:760}.page-heading p{font-size:12px;color:var(--muted);margin:5px 0 0}.heading-actions{margin-left:auto;display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:flex-end}.view-switch{display:flex;gap:3px;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:3px}.view-switch button{background:transparent;border:0;border-radius:7px;color:var(--muted);padding:7px 10px;font-size:12px}.view-switch button.active{background:var(--accent-soft);color:var(--accent-dark);font-weight:700}.calendar-toolbar{display:flex;align-items:center;gap:9px;margin:0 0 12px;min-width:0}.calendar-title{font-size:17px;font-weight:750;letter-spacing:-.35px;min-width:165px}.calendar-toolbar .icon-button{border:1px solid var(--line);background:var(--panel)}.calendar-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));border-top:1px solid var(--line);border-left:1px solid var(--line);border-radius:14px;overflow:visible;background:var(--panel)}.weekday{font-size:10px;letter-spacing:.6px;font-weight:800;text-align:center;padding:10px 3px;color:var(--muted);border-right:1px solid var(--line);border-bottom:1px solid var(--line);text-transform:uppercase}.day-cell{min-height:112px;min-width:0;padding:6px 5px 7px;position:relative;background:var(--panel);border-right:1px solid var(--line);border-bottom:1px solid var(--line);cursor:pointer}.day-cell:nth-child(8){border-radius:0}.day-cell.outside{background:var(--panel2)}.day-cell.selected{box-shadow:inset 0 0 0 2px var(--accent);z-index:2}.day-cell.today .day-num{background:var(--accent);color:#fff}.day-cell:hover{background:var(--panel2)}.day-num{display:grid;place-items:center;width:26px;height:26px;border-radius:50%;font-size:12px;font-weight:700;margin-bottom:4px}.outside .day-num{color:#aeb6aa}.event-stack{display:grid;gap:3px;min-width:0}.event-pill{width:100%;min-width:0;border:0;border-radius:5px;padding:4px 5px;text-align:left;font-size:10px;line-height:1.2;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;background:var(--blue-bg);color:var(--blue);border-left:3px solid var(--blue)}.event-pill.priority-urgent{background:var(--red-bg);color:var(--red);border-color:var(--red)}.event-pill.priority-high{background:var(--orange-bg);color:var(--orange);border-color:var(--orange)}.event-pill.priority-low{background:var(--green-bg);color:var(--green);border-color:var(--green)}.event-pill.done{text-decoration:line-through;opacity:.7}.more-events{font-size:10px;color:var(--muted);padding:2px 3px}.hover-card{position:absolute;display:none;top:32px;left:6px;min-width:190px;width:max-content;max-width:min(270px,calc(100vw - 40px));background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:11px;box-shadow:var(--shadow);z-index:20;pointer-events:none}.day-cell:hover .hover-card{display:block}.hover-card strong{font-size:12px;display:block;margin-bottom:7px}.hover-line{font-size:11px;padding:5px 0;border-top:1px solid var(--line);overflow-wrap:anywhere}.hover-line small{display:block;color:var(--muted);font-size:10px}.week-grid .day-cell{min-height:290px}.agenda-list,.entry-list{display:grid;gap:9px}.agenda-day{margin-bottom:16px}.agenda-day-title{font-size:12px;font-weight:800;color:var(--muted);padding:8px 0;border-bottom:1px solid var(--line);margin-bottom:8px}.entry-row{display:flex;align-items:flex-start;gap:10px;background:var(--panel);border:1px solid var(--line);border-radius:13px;padding:12px;min-width:0}.entry-priority{width:4px;min-height:44px;align-self:stretch;border-radius:6px;background:var(--blue);flex:0 0 4px}.entry-priority.priority-urgent{background:var(--red)}.entry-priority.priority-high{background:var(--orange)}.entry-priority.priority-low{background:var(--green)}.entry-row-main{flex:1;min-width:0}.entry-title{font-weight:750;font-size:13px;overflow-wrap:anywhere}.entry-title.done{text-decoration:line-through;color:var(--muted)}.entry-meta{color:var(--muted);font-size:11px;margin-top:4px;display:flex;gap:7px;flex-wrap:wrap}.entry-notes{font-size:12px;color:var(--muted);margin-top:5px;white-space:pre-wrap;overflow-wrap:anywhere}.tag{border-radius:999px;padding:3px 7px;display:inline-flex;align-items:center;font-size:10px;font-weight:750;background:var(--panel2);color:var(--muted);border:1px solid var(--line)}.tag.done-tag{background:var(--green-bg);color:var(--green);border-color:transparent}.entry-actions{display:flex;gap:4px;align-items:center}.mini-button{width:29px;height:29px;display:grid;place-items:center;border:1px solid var(--line);border-radius:8px;background:var(--panel);color:var(--muted)}.mini-button:hover{color:var(--text);background:var(--panel2)}.details{background:var(--panel);border-left:1px solid var(--line);padding:20px 15px;min-width:0;overflow:hidden}.details h2{font-size:15px;margin:0 0 4px}.details-date{font-size:11px;color:var(--muted);margin-bottom:15px}.details .primary-button{width:100%;font-size:12px;margin-bottom:13px}.detail-empty{border:1px dashed var(--line);border-radius:12px;padding:18px 12px;color:var(--muted);text-align:center;font-size:12px}.details-entry{padding:11px 0;border-top:1px solid var(--line)}.details-entry .entry-title{font-size:12px}.priority-legend{display:flex;gap:6px;flex-wrap:wrap;margin-top:14px}.priority-legend span{display:inline-flex;align-items:center;gap:5px;font-size:10px;color:var(--muted)}.priority-legend i{width:7px;height:7px;border-radius:50%;background:var(--blue)}.priority-legend .red{background:var(--red)}.priority-legend .orange{background:var(--orange)}.priority-legend .green{background:var(--green)}.empty-state{background:var(--panel);border:1px dashed var(--line);border-radius:15px;padding:34px 18px;text-align:center;color:var(--muted);font-size:13px}.empty-state strong{display:block;color:var(--text);font-size:15px;margin-bottom:5px}.folder-card{background:var(--panel);border:1px solid var(--line);border-radius:13px;padding:14px;display:flex;align-items:center;gap:10px}.folder-card .folder-name{flex:1;font-weight:700;overflow-wrap:anywhere}.folder-card small{display:block;color:var(--muted);font-size:11px;font-weight:400}.folder-list{padding-left:6px}.folder-shortcut{font-size:12px;padding:7px 9px;border:0;background:transparent;color:var(--muted);width:100%;text-align:left;border-radius:9px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.folder-shortcut:hover,.folder-shortcut.active{background:var(--accent-soft);color:var(--accent-dark)}.folder-filter{font-size:12px;color:var(--muted);margin-bottom:12px}.mobile-overlay{display:none}.toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);z-index:100;background:#2d392f;color:#fff;padding:11px 16px;border-radius:11px;box-shadow:var(--shadow);font-size:12px;max-width:calc(100vw - 24px)}
+.modal-backdrop{position:fixed;inset:0;z-index:80;background:rgba(20,30,23,.42);display:grid;place-items:center;padding:15px;overflow-y:auto}.modal{width:min(100%,610px);max-height:calc(100dvh - 30px);overflow:auto;background:var(--panel);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow)}.modal-head{position:sticky;top:0;background:var(--panel);border-bottom:1px solid var(--line);display:flex;align-items:center;padding:15px 18px;z-index:2}.modal-head h2{font-size:17px;margin:0}.modal-head button{margin-left:auto}.modal-body{padding:17px 18px;display:grid;gap:13px}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.field-full{grid-column:1/-1}.inline-field{display:flex;align-items:center;gap:9px;font-size:12px;color:var(--text)}.inline-field input{accent-color:var(--accent);width:16px;height:16px}.attachment-drop{display:block;margin-top:6px;border:1px dashed var(--line);border-radius:11px;padding:12px;color:var(--muted);font-size:12px}.attachment-drop input{display:block;margin-top:8px;width:100%;max-width:100%;font-size:12px}.attachment-list{display:grid;gap:6px}.attachment-item{display:flex;align-items:center;gap:9px;padding:8px;border:1px solid var(--line);border-radius:9px;font-size:11px;min-width:0}.attachment-item span{flex:1;overflow-wrap:anywhere}.attachment-item small{display:block;color:var(--muted)}.modal-footer{display:flex;gap:8px;justify-content:flex-end;align-items:center;flex-wrap:wrap;padding-top:12px;border-top:1px solid var(--line)}.modal-footer .spacer{flex:1}.modal-footer .text-button{margin-right:auto}.hidden-file{display:none}#bg-picker{position:fixed;right:16px;top:62px;z-index:45;background:var(--panel);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);padding:13px;width:245px}.swatches{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:10px}.swatch{border:1px solid var(--line);border-radius:9px;background:var(--panel);padding:5px;font-size:10px;color:var(--muted)}.swatch i{height:28px;display:block;border-radius:5px;margin-bottom:4px;background:var(--swatch)}.swatch.active{border-color:var(--accent);color:var(--accent-dark)}
+body.dark{--bg:#1d241f;--panel:#252e27;--panel2:#202821;--text:#e8eee7;--muted:#a1ada0;--line:#3b483d;--accent:#8db696;--accent-dark:#b1d0b7;--accent-soft:#304333;--shadow:0 18px 52px rgba(0,0,0,.25);--red-bg:#472b2a;--orange-bg:#493824;--blue-bg:#293a4b;--green-bg:#2c4431;color-scheme:dark}body.dark .auth-screen{background:radial-gradient(ellipse at 20% 8%,#2d3d2f,transparent 38%),radial-gradient(ellipse at 90% 85%,#332c3b,transparent 34%),var(--bg)}body.dark .auth-art-front{background:var(--panel);border-color:var(--line)}
+body.bg-lavender{--bg:#f5f1fa;--accent:#8370a6;--accent-dark:#69558d;--accent-soft:#eee8f7}body.bg-blush{--bg:#fbf1ee;--accent:#b77d70;--accent-dark:#975f53;--accent-soft:#f8e5e0}body.bg-blue{--bg:#eef4f9;--accent:#6289ae;--accent-dark:#456d92;--accent-soft:#e0edf7}body.bg-sand{--bg:#f7f2e9;--accent:#a68758;--accent-dark:#82683f;--accent-soft:#f0e7d5}body.bg-mint{--bg:#edf6f1;--accent:#4f9279;--accent-dark:#36765e;--accent-soft:#dceddf}body.dark.bg-lavender{--accent:#b8a6da;--accent-dark:#cabbeb;--accent-soft:#40364f}body.dark.bg-blush{--accent:#dda79b;--accent-dark:#ebbbb0;--accent-soft:#4d3331}body.dark.bg-blue{--accent:#9fc4e6;--accent-dark:#b6d6f2;--accent-soft:#2b4052}body.dark.bg-sand{--accent:#d2b582;--accent-dark:#e2c998;--accent-soft:#4a4030}body.dark.bg-mint{--accent:#91c9b2;--accent-dark:#a8dbc6;--accent-soft:#2b4238}
+@media(max-width:1120px){.layout{grid-template-columns:190px minmax(0,1fr)}.layout.sidebar-collapsed{grid-template-columns:68px minmax(0,1fr)}.details{display:none}.layout.details-hidden{grid-template-columns:190px minmax(0,1fr)}.layout.sidebar-collapsed.details-hidden{grid-template-columns:68px minmax(0,1fr)}.workspace{padding:20px 16px}.day-cell{min-height:100px}}
+@media(max-width:760px){.topbar{padding:0 12px;height:60px;gap:8px}.topbar .brand-name{font-size:18px}.topbar .brand-mark{width:33px;height:33px}.user-name{display:none}.top-action{padding:8px;font-size:11px}.topbar .hide-mobile{display:none}.layout,.layout.sidebar-collapsed,.layout.details-hidden,.layout.sidebar-collapsed.details-hidden{display:block;min-height:calc(100vh - 60px)}.sidebar{position:fixed;top:60px;bottom:0;left:0;width:250px;max-width:85vw;z-index:60;box-shadow:var(--shadow);transform:translateX(-110%);transition:transform .18s;display:block;overflow-y:auto}.sidebar.mobile-open{transform:translateX(0)}.sidebar-collapsed .nav-link{justify-content:flex-start;padding:10px}.sidebar-collapsed .nav-link .nav-text,.sidebar-collapsed .nav-label,.sidebar-collapsed .folder-list,.sidebar-collapsed .sidebar-hint{display:initial}.mobile-overlay.show{display:block;position:fixed;inset:60px 0 0;z-index:55;background:rgba(17,24,18,.3)}.workspace{padding:16px 10px 28px}.page-heading h1{font-size:22px}.page-heading{flex-wrap:wrap}.heading-actions{width:100%;justify-content:space-between;margin-left:0}.calendar-title{font-size:15px;min-width:0;flex:1}.calendar-toolbar{gap:5px}.calendar-toolbar .icon-button{width:32px;height:32px}.view-switch button{padding:7px}.day-cell{min-height:83px;padding:5px 3px}.weekday{font-size:9px;padding:8px 1px}.day-num{width:23px;height:23px;font-size:11px}.event-pill{font-size:9px;padding:4px 3px;border-left-width:2px}.event-pill .pill-label{display:none}.more-events{font-size:9px}.calendar-grid{border-radius:10px}.week-grid{grid-template-columns:repeat(7,minmax(0,1fr))}.week-grid .day-cell{min-height:175px}.hover-card{display:none!important}.form-grid{grid-template-columns:1fr}.field-full{grid-column:auto}.modal{max-height:calc(100dvh - 20px)}.modal-backdrop{padding:10px}.modal-body{padding:14px}.details{display:none!important}.calendar-mode-text{display:none}.auth-card{padding:24px 19px;border-radius:21px}.auth-card h1{font-size:25px}.user-name{display:none}#bg-picker{right:8px;top:56px}.entry-actions{flex-wrap:wrap}.entry-row{padding:10px;gap:8px}.topbar .brand-row{gap:7px}}
+@media(max-width:390px){.sync-status{max-width:58px;flex-basis:58px;font-size:9px}.topbar{gap:5px}.topbar .brand-name{font-size:16px}.topbar .brand-mark{width:30px;height:30px}.topbar .top-action{font-size:10px;padding:7px}.workspace{padding-left:7px;padding-right:7px}.day-cell{min-height:72px;padding:4px 2px}.event-pill{font-size:8px}.weekday{font-size:8px;letter-spacing:0}.day-num{width:21px;height:21px;font-size:10px}.calendar-title{font-size:14px}.heading-actions .primary-button{padding:8px 9px}}
+
+/* Dayframe v1.4 usability and mobile refinements */
+.agenda-day-title{display:flex;align-items:center;justify-content:space-between;gap:10px}.agenda-empty{margin:0;padding:6px 0 10px}.day-cell-top{display:flex;align-items:center;justify-content:space-between;gap:2px;min-width:0}
+.day-add{flex:0 0 auto;width:25px;height:25px;border:0;border-radius:8px;background:var(--panel2);color:var(--accent-dark);font-size:18px;line-height:1;display:grid;place-items:center;opacity:.68;transition:opacity .15s,background .15s,transform .15s}
+.day-add:hover,.day-add:focus-visible{opacity:1;background:var(--accent-soft);transform:scale(1.04)}
+.entry-title-button{display:block;border:0;padding:0;background:transparent;text-align:left;color:var(--text);font:inherit;font-weight:750;cursor:pointer;max-width:100%;overflow-wrap:anywhere}
+.entry-title-button:hover{text-decoration:underline;text-decoration-color:var(--accent)}
+.details-heading{display:flex;align-items:flex-start;gap:8px;justify-content:space-between}
+.details-heading h2{margin:0}
+.details-close{display:none;flex:0 0 auto}
+.details-add{margin:10px 0 2px;width:100%}
+#profile-button:disabled{opacity:.65}
+@media(max-width:1120px){
+ .layout:not(.details-hidden) .details{display:block;position:fixed;right:12px;top:76px;bottom:12px;width:min(320px,calc(100vw - 24px));z-index:70;overflow:auto;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:16px;box-shadow:var(--shadow)}
+ .layout.details-hidden .details{display:none!important}
+ .details-close{display:inline-flex}
+}
+@media(max-width:760px){
+ .sync-status{display:block;max-width:76px;font-size:9px;white-space:nowrap}
+ body{padding-bottom:env(safe-area-inset-bottom)}
+ .topbar{padding-left:max(9px,env(safe-area-inset-left));padding-right:max(9px,env(safe-area-inset-right));gap:6px}
+ .topbar .brand-row{gap:6px;min-width:0}.topbar .brand-name{font-size:17px;letter-spacing:-.5px}
+ .topbar .brand-mark{width:30px;height:30px;border-radius:10px}
+ .layout:not(.details-hidden) .details{display:block!important;left:9px;right:9px;top:auto;bottom:max(9px,env(safe-area-inset-bottom));width:auto;max-height:min(58dvh,540px);padding:15px;border-radius:18px;z-index:75;transform:translateY(0);overscroll-behavior:contain}
+ .details-close{width:38px;height:38px;display:inline-flex}
+ .details-add,.primary-button,.secondary-button,.danger-button,.mini-button,.nav-link,.icon-button{min-height:40px}
+ .day-cell{min-height:88px;padding:4px 3px}
+ .day-cell-top .day-num{flex:0 0 auto}
+ .day-add{width:24px;height:24px;font-size:17px;opacity:1;background:transparent}
+ .event-stack{overflow:hidden}
+ .heading-actions{gap:6px}
+ .heading-actions .view-switch{max-width:100%;flex:0 0 auto}
+ .heading-actions .view-switch button{padding:7px 8px;min-height:36px}
+ .heading-actions .primary-button,.heading-actions .secondary-button{min-height:38px}
+ .modal-backdrop{padding:0;align-items:end}
+ .modal{width:100%;max-width:none;max-height:calc(100dvh - env(safe-area-inset-top));border-radius:20px 20px 0 0;padding-bottom:env(safe-area-inset-bottom)}
+ .modal-head{padding:14px 16px}
+ .modal-body{padding:14px 16px 18px}
+ .modal-footer{position:sticky;bottom:0;background:var(--panel);padding:12px 0 max(4px,env(safe-area-inset-bottom));z-index:2}
+ .input,.select,.textarea{font-size:16px;min-height:44px}
+ .textarea{min-height:100px}
+ .day-add:focus-visible,.day-add:hover{background:var(--accent-soft)}
+}
+@media(max-width:390px){
+ .topbar{gap:4px}
+ .sync-status{max-width:38px;font-size:8px}
+ .topbar .brand-name{font-size:15px}
+ #theme-button,#signout-button{font-size:0;width:34px;min-width:34px;height:36px;padding:0}
+ #theme-button::before{content:'◐';font-size:16px}
+ #signout-button::before{content:'↪';font-size:17px}
+ .topbar .brand-mark{width:28px;height:28px}
+ .workspace{padding-left:6px;padding-right:6px}
+ .day-cell{min-height:78px;padding:3px 2px}
+ .day-add{width:20px;height:20px;font-size:15px}
+ .event-pill{max-width:100%;overflow:hidden;text-overflow:ellipsis}
+ .heading-actions .primary-button{padding:8px 9px}
+}
+@media(max-width:760px){.sync-status{display:inline-flex!important;align-items:center;justify-content:center;flex:0 0 30px!important;width:30px;height:30px;min-width:30px;max-width:30px!important;border:1px solid var(--line)!important;border-radius:10px;background:var(--panel2)!important;font-size:0!important;line-height:1}.sync-status::before{font-size:15px;line-height:1;content:'✓';color:var(--green)}.sync-status[data-state=busy]::before{content:'↻';color:var(--blue)}.sync-status[data-state=error]::before{content:'!';color:var(--red)}}
+@media(max-width:390px){.sync-status{flex-basis:28px!important;width:28px;height:28px;min-width:28px;max-width:28px!important}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;scroll-behavior:auto!important}}
+
+.sync-status{border:0;padding:0;background:transparent;font-family:inherit;text-align:left}.checklist-preview{display:grid;gap:5px;margin-top:9px}.checklist-item-toggle{display:flex;align-items:flex-start;gap:8px;width:100%;padding:6px 8px;text-align:left;background:var(--panel2);border:1px solid var(--line);border-radius:8px;color:var(--text);font:inherit;font-size:12px;overflow-wrap:anywhere}.checklist-item-toggle .checkmark{display:inline-flex;align-items:center;justify-content:center;flex:0 0 17px;width:17px;height:17px;border:1px solid var(--line);border-radius:5px;background:var(--panel);font-size:11px}.checklist-item-toggle.checked .checkmark{background:var(--accent);border-color:var(--accent);color:#fff}.checklist-item-toggle.checked>span:last-child{text-decoration:line-through;color:var(--muted)}@media(max-width:760px){.checklist-item-toggle{min-height:36px;font-size:13px}}
+
+/* Dayframe v1.13: shared responsive app with no artificial workspace scaling. */
+.layout.details-hidden .details{display:none!important}
+.notes-page-heading{align-items:center}
+.notes-shell{display:grid;grid-template-columns:minmax(220px,285px) minmax(0,1fr);height:min(72dvh,780px);min-height:440px;background:var(--panel);border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 5px 24px rgba(33,48,35,.035)}
+.notes-list-panel{display:flex;flex-direction:column;min-width:0;min-height:0;background:var(--panel2);border-right:1px solid var(--line)}
+.notes-list-toolbar{display:flex;align-items:center;gap:8px;padding:12px;border-bottom:1px solid var(--line)}
+.notes-search-wrap{display:flex;align-items:center;gap:6px;min-width:0;flex:1;border:1px solid var(--line);border-radius:9px;padding:0 9px;background:var(--panel);color:var(--muted)}
+.notes-search-wrap span{font-size:20px;line-height:1}
+.notes-search-wrap input{width:100%;min-width:0;border:0;outline:none;background:transparent;color:var(--text);padding:9px 0;font-size:13px}
+.notes-list{overflow:auto;flex:1;min-height:0;padding:7px;overscroll-behavior:contain}
+.note-card{display:block;width:100%;text-align:left;padding:11px 11px 10px;margin:0 0 5px;border:1px solid transparent;background:transparent;color:var(--text);border-radius:10px;min-width:0}
+.note-card:hover{background:var(--panel)}.note-card.active{background:var(--accent-soft);border-color:#ccddcc}
+.note-card-top{display:flex;gap:6px;align-items:center;min-width:0}.note-card-title{font-size:12px;font-weight:800;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1}
+.note-pin{font-size:13px;color:var(--accent-dark);flex:0 0 auto}
+.note-card-preview{display:block;font-size:11px;color:var(--muted);margin-top:4px;line-height:1.35;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow-wrap:anywhere}
+.note-card-date{display:block;font-size:10px;color:var(--muted);margin-top:6px}
+.notes-list-empty{padding:24px 10px;text-align:center;font-size:12px;color:var(--muted)}
+.notes-list-footer{font-size:10px;color:var(--muted);padding:9px 13px;border-top:1px solid var(--line)}
+.notes-editor{display:flex;flex-direction:column;min-width:0;min-height:0;overflow:hidden;padding:15px 24px 12px;background:var(--panel)}
+.note-editor-toolbar{display:flex;align-items:center;gap:8px;min-height:34px;padding-bottom:9px;border-bottom:1px solid var(--line)}
+.note-editor-date{font-size:10px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.note-editor-title{display:block;width:100%;border:0!important;box-shadow:none!important;outline:none!important;background:transparent;color:var(--text);font-size:26px;font-weight:780;letter-spacing:-.6px;padding:20px 0 8px;min-height:60px}
+.note-editor-body{flex:1;display:block;width:100%;min-height:180px;border:0!important;box-shadow:none!important;outline:none!important;resize:none;background:transparent;color:var(--text);padding:7px 0 14px;font-size:14px;line-height:1.85;white-space:pre-wrap}
+.note-editor-footer{display:flex;justify-content:space-between;gap:10px;color:var(--muted);font-size:10px;border-top:1px solid var(--line);padding-top:9px}
+.notes-empty-editor{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:9px;height:100%;padding:30px;color:var(--muted)}
+.notes-empty-editor strong{font-size:16px;color:var(--text)}.notes-empty-editor p{max-width:320px;font-size:12px;margin:0}.notes-empty-icon{font-size:35px;color:var(--accent)}.notes-mobile-back{display:none;padding:7px 9px;min-height:34px}
+@media(max-width:760px){
+ .notes-shell{display:grid;grid-template-columns:minmax(0,1fr);height:calc(100dvh - 208px);min-height:430px;border-radius:13px}
+ .notes-list-panel{display:flex;border-right:0;min-height:0}
+ .notes-editor{display:none;padding:10px 14px}
+ #workspace.notes-mobile-editor .notes-list-panel{display:none}
+ #workspace.notes-mobile-editor .notes-editor{display:flex;min-height:430px}
+ .notes-mobile-back{display:inline-flex}
+ .note-editor-title{font-size:23px;padding-top:14px}
+ .note-editor-body{font-size:16px;line-height:1.7}
+ .note-editor-date{font-size:9px}
+ .notes-list-toolbar{padding:9px}
+ .note-card{min-height:64px}
+ .notes-page-heading .heading-actions{width:auto;margin-left:auto}
+ .notes-page-heading .heading-actions .primary-button{padding:9px 10px}
+}
+@media(max-width:390px){.notes-editor{padding:8px 11px}.notes-list-toolbar{gap:5px}.notes-search-wrap input{font-size:16px}}
+
+
+/* Dayframe v1.13 performance and responsive hardening */
+html{touch-action:pan-x pan-y;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{overscroll-behavior-x:none}
+.brand-mark svg{display:block;width:74%;height:74%;max-width:30px;max-height:30px}
+.topbar .brand-mark{flex:0 0 auto}
+#workspace{min-width:0;width:100%;overflow:visible}
+.page-heading,.heading-actions,.calendar-toolbar,.calendar-grid,.entry-list,.agenda-list,.notes-shell,.folder-card,.entry-row,.modal,.modal-body{min-width:0;max-width:100%}
+.calendar-export-button{white-space:nowrap}
+.event-pill{display:block;max-width:100%;min-width:0}
+.hover-card{overflow-wrap:anywhere}
+@media(max-width:1120px){
+ .layout{min-width:0}
+ .workspace{min-width:0;width:100%;overflow:visible}
+ .details{max-width:calc(100vw - 24px)}
+}
+@media(max-width:760px){
+ .topbar{width:100%;min-width:0;gap:6px;padding-left:max(8px,env(safe-area-inset-left));padding-right:max(8px,env(safe-area-inset-right));overflow:visible}
+ .topbar .brand-row{min-width:0;flex:0 1 auto;gap:6px}
+ .topbar .brand-name{white-space:nowrap}
+ .topbar .topbar-spacer{flex:1 1 2px;min-width:2px}
+ .topbar .avatar{flex:0 0 34px}
+ .topbar .brand-mark{flex:0 0 30px;width:30px;height:30px}
+ .workspace{padding:13px 10px 28px;overflow:visible}
+ .page-heading{display:flex;flex-direction:column;align-items:stretch;gap:10px;margin-bottom:13px}
+ .page-heading h1{font-size:22px;line-height:1.25;overflow-wrap:anywhere}
+ .page-heading p{font-size:12px;line-height:1.45;max-width:100%}
+ .heading-actions{display:flex;width:100%;margin-left:0;justify-content:flex-start;align-items:center;gap:6px;flex-wrap:wrap}
+ .heading-actions>*{max-width:100%;min-width:0}
+ .heading-actions .view-switch{flex:0 1 auto;min-width:0;overflow-x:auto;max-width:100%}
+ .heading-actions .view-switch button{padding:7px 9px;white-space:nowrap}
+ .heading-actions .primary-button,.heading-actions .secondary-button{min-height:38px;padding:8px 10px}
+ .calendar-toolbar{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px;align-items:center}
+ .calendar-toolbar .icon-button{flex:0 0 36px;width:36px;height:36px;min-width:36px}
+ .calendar-title{flex:1 1 115px;min-width:0;max-width:100%;font-size:15px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+ .calendar-toolbar [data-today]{margin-left:auto;min-height:36px;padding:7px 10px}
+ .calendar-mode-text{flex:1 0 100%;white-space:normal}
+ .calendar-grid{grid-template-columns:repeat(7,minmax(0,1fr));width:100%;min-width:0;overflow:hidden;border-radius:10px}
+ .weekday{min-width:0;padding:8px 0;font-size:9px;letter-spacing:0}
+ .day-cell{min-width:0;min-height:82px;height:auto;padding:4px 2px;overflow:hidden}
+ .day-cell-top{gap:0;min-width:0}
+ .day-num{width:20px;height:20px;min-width:20px;font-size:10px;margin-bottom:3px}
+ .day-add{width:20px;height:20px;min-width:20px;font-size:15px;border-radius:6px}
+ .event-stack{min-width:0;max-width:100%;gap:2px;overflow:hidden}
+ .event-pill{width:100%;min-width:0;max-width:100%;padding:3px 2px;font-size:clamp(7px,2.1vw,9px);line-height:1.2;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;border-left-width:2px;border-radius:4px}
+ .more-events{font-size:8px;padding:2px 1px;white-space:nowrap}
+ .priority-legend{display:flex;flex-wrap:wrap;gap:6px 10px}
+ .entry-list,.agenda-list{width:100%;gap:8px}
+ .entry-row{display:flex;flex-wrap:wrap;align-items:flex-start;padding:10px;gap:8px;width:100%;overflow-wrap:anywhere}
+ .entry-row-main{flex:1 1 calc(100% - 24px);min-width:0;max-width:100%;overflow-wrap:anywhere}
+ .entry-title,.entry-notes,.entry-meta{max-width:100%;overflow-wrap:anywhere;word-break:normal}
+ .entry-actions{display:flex;flex:0 0 auto;flex-wrap:wrap;gap:5px;max-width:100%;margin-left:auto}
+ .folder-card{display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:10px;width:100%}
+ .folder-card .folder-name{flex:1 1 140px;min-width:0;overflow-wrap:anywhere}
+ .folder-card button{max-width:100%;min-height:38px}
+ .notes-shell{display:grid;grid-template-columns:minmax(0,1fr);width:100%;height:calc(100dvh - 205px);min-height:360px;max-height:calc(100dvh - 175px);overflow:hidden}
+ .notes-list-panel,.notes-editor{min-width:0;width:100%;max-width:100%}
+ .notes-list-panel{min-height:0;overflow:hidden}
+ .notes-list{min-width:0;overflow-x:hidden;overflow-y:auto}
+ .notes-editor{min-height:0;overflow:hidden}
+ #workspace.notes-mobile-editor .notes-editor{min-height:0;height:100%;max-height:100%;overflow:auto}
+ .note-editor-toolbar{display:flex;flex-wrap:wrap;gap:6px;min-width:0}
+ .note-editor-date{flex:1 1 140px;min-width:0;overflow-wrap:anywhere}
+ .note-editor-title,.note-editor-body{width:100%;min-width:0;max-width:100%;overflow-wrap:anywhere}
+ .modal-backdrop{padding:0;align-items:flex-end;overflow-y:auto;overscroll-behavior:contain}
+ .modal{width:100%;max-width:100%;max-height:calc(100dvh - env(safe-area-inset-top));overflow-x:hidden;overflow-y:auto;border-radius:20px 20px 0 0}
+ .modal-body{display:grid;grid-template-columns:minmax(0,1fr);gap:12px;width:100%;max-width:100%;overflow-wrap:anywhere}
+ .form-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:10px;width:100%;max-width:100%}
+ .form-grid>*{min-width:0;max-width:100%}
+ .field-full{grid-column:1}
+ .input,.select,.textarea,.modal input,.modal textarea,.modal select{width:100%;min-width:0;max-width:100%;font-size:16px}
+ .attachment-item{flex-wrap:wrap;min-width:0;max-width:100%}
+ .attachment-item>span{min-width:0;overflow-wrap:anywhere}
+ .details{max-width:calc(100vw - 18px);overflow-x:hidden;overflow-y:auto;overscroll-behavior:contain}
+ .details-entry,.details-heading{min-width:0;max-width:100%;overflow-wrap:anywhere}
+ #background-picker{max-width:calc(100vw - 16px);}
+ button,.nav-link,.icon-button{touch-action:manipulation}
+}
+@media(max-width:420px){
+ .workspace{padding-left:7px;padding-right:7px}
+ .topbar{gap:4px}
+ .topbar .brand-name{font-size:15px}
+ .topbar .brand-mark{width:28px;height:28px;flex-basis:28px}
+ .calendar-export-button{font-size:11px;padding:7px 8px!important}
+ .heading-actions{gap:5px}
+ .heading-actions .view-switch button{padding:6px 7px;font-size:11px}
+ .calendar-title{font-size:14px;flex-basis:105px}
+ .day-cell{min-height:72px;padding:3px 1px}
+ .weekday{font-size:8px}
+ .day-num{width:18px;height:18px;min-width:18px;font-size:9px}
+ .day-add{width:18px;height:18px;min-width:18px;font-size:14px}
+ .event-pill{font-size:7px;padding:2px 1px}
+ .notes-shell{height:calc(100dvh - 190px);min-height:350px;max-height:calc(100dvh - 160px)}
+}
+@media(prefers-reduced-motion:reduce){.layout,.sidebar,.mobile-overlay{transition:none!important}}
+
+
+@media(max-width:760px){
+ /* Keep the selected-day panel in document flow instead of floating over every planner view. */
+ .layout:not(.details-hidden) .details{position:static!important;left:auto!important;right:auto!important;top:auto!important;bottom:auto!important;width:100%!important;max-width:100%!important;max-height:none!important;height:auto!important;margin:10px 0 0!important;transform:none!important;overflow:visible!important;z-index:auto!important;border:1px solid var(--line)!important;border-radius:14px!important;padding:14px!important;box-shadow:none!important;background:var(--panel)!important}
+}
+
+</style>
+</head>
+<body>
+<div id="file-warning" class="file-origin-alert hidden"><strong>Open Dayframe from its hosted website.</strong>Firebase sign-in and cloud syncing require HTTPS. Deploy this project with GitHub Pages, then open that website URL.</div>
+<section id="auth-screen" class="auth-screen">
+  <div class="auth-card">
+    <div class="brand-row"><div class="brand-mark" aria-hidden="true"><svg viewBox="0 0 48 48" width="25" height="25"  xmlns="http://www.w3.org/2000/svg"><rect x="7" y="10" width="34" height="31" rx="7" fill="none" stroke="currentColor" stroke-width="2.8"/><path d="M7 18h34" stroke="currentColor" stroke-width="2.8"/><path d="M16 6.5v7M32 6.5v7" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"/><path d="m15.5 29 5.5 5.2 11.5-11.4" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="brand-name">dayframe<span>.</span></div></div>
+    <div class="auth-art" aria-hidden="true"><div class="auth-art-back"><i></i><i></i><i></i></div><div class="auth-art-front"><div class="art-date"><small>MON</small><strong>19</strong></div><div class="art-bars"><i></i><i></i><i></i></div></div></div>
+    <div class="auth-kicker">A CALMER WAY TO PLAN</div><h1 id="auth-title">Welcome back.</h1>
+    <p class="auth-subtitle" id="auth-subtitle">Sign in to open your calendar, tasks, meetings, and checklists together.</p>
+    <div class="auth-tabs"><button type="button" data-auth-mode="login" class="active">Sign in</button><button type="button" data-auth-mode="register">Create account</button></div>
+<div class="auth-or">SECURE FIREBASE ACCOUNT</div>
+    <form id="auth-form" class="form-stack">
+      <label id="name-field" class="field-label hidden">Display name (optional)<input class="input" id="auth-name" autocomplete="nickname" maxlength="60" placeholder="A nickname, if you want one"></label>
+      <label class="field-label">Login ID<input class="input" id="auth-login-id" type="text" autocomplete="username" autocapitalize="none" spellcheck="false" maxlength="254" placeholder="Your private Login ID" required aria-describedby="login-id-help"><span class="field-help" id="login-id-help">Use your private Login ID and password on every device. No email address is required.</span></label>
+      <label class="field-label">Password<input class="input" id="auth-password" type="password" autocomplete="current-password" minlength="6" placeholder="At least 6 characters" required></label>
+      <button class="text-button" id="forgot-password" type="button">Forgot your password?</button>
+      <label class="remember-row"><input id="remember-me" type="checkbox" checked><span>Remember me</span><small id="remember-state">On</small></label>
+      <p class="remember-help" id="remember-help">On: keep me signed in on this device until I sign out.</p>
+      <div id="auth-message" class="auth-error hidden" role="alert"></div>
+      <button id="auth-submit" class="primary-button wide" type="submit">Sign in to Dayframe →</button>
+    </form>
+    <div class="auth-foot">Use the same Login ID and password on your phone and computer.</div><p class="auth-disclaimer">No email is collected for new Login ID accounts. Cloud data is tied to your account. ID-only accounts cannot receive email password resets, so store your password safely. Older email-based accounts can still sign in with their original email.</p>
+  </div>
+</section>
+<section id="app" class="hidden">
+  <header class="topbar">
+    <button id="mobile-menu" class="icon-button" type="button" aria-label="Open navigation">☰</button>
+    <button id="desktop-collapse" class="icon-button hide-mobile" type="button" aria-label="Collapse sidebar">☷</button>
+    <div class="brand-row"><div class="brand-mark" aria-hidden="true"><svg viewBox="0 0 48 48" width="25" height="25"  xmlns="http://www.w3.org/2000/svg"><rect x="7" y="10" width="34" height="31" rx="7" fill="none" stroke="currentColor" stroke-width="2.8"/><path d="M7 18h34" stroke="currentColor" stroke-width="2.8"/><path d="M16 6.5v7M32 6.5v7" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"/><path d="m15.5 29 5.5 5.2 11.5-11.4" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="brand-name">dayframe<span>.</span></div></div>
+    <div class="topbar-spacer"></div><button id="sync-status" class="sync-status" type="button" data-state="busy" role="status" aria-live="polite" aria-label="Planner sync status" title="Tap to check account and sync status">Saved to Firebase</button>
+    <button class="top-action hide-mobile" id="background-button" type="button">Background ▾</button><button class="top-action" id="theme-button" type="button">Dark mode</button>
+    <button class="avatar" id="profile-button" type="button" aria-label="Change profile photo"><span id="avatar-initials">U</span><img id="avatar-image" class="hidden" alt="Profile"></button><input id="profile-upload" class="hidden-file" type="file" accept="image/*">
+    <button id="user-name" class="user-name" type="button" title="Click to edit your display name"></button><button class="top-action" id="signout-button" type="button" aria-label="Sign out" title="Sign out">Sign out</button>
+  </header>
+  <div id="background-picker" class="hidden"><strong>Background color</strong><p class="small quiet">Choose a soft color for the workspace.</p><div class="swatches"><button class="swatch active" data-bg="sage" style="--swatch:#f4f6f0"><i></i>Sage</button><button class="swatch" data-bg="lavender" style="--swatch:#f5f1fa"><i></i>Lavender</button><button class="swatch" data-bg="blush" style="--swatch:#fbf1ee"><i></i>Blush</button><button class="swatch" data-bg="blue" style="--swatch:#eef4f9"><i></i>Blue</button><button class="swatch" data-bg="sand" style="--swatch:#f7f2e9"><i></i>Sand</button><button class="swatch" data-bg="mint" style="--swatch:#edf6f1"><i></i>Mint</button></div><button id="close-background" class="secondary-button" style="width:100%;margin-top:10px">Done</button></div>
+  <div id="mobile-overlay" class="mobile-overlay"></div>
+  <div class="layout" id="layout">
+    <aside id="sidebar" class="sidebar">
+      <div class="nav-label">PLANNER</div>
+      <button class="nav-link active" data-view="Calendar"><span class="nav-icon">▦</span><span class="nav-text">Calendar</span></button>
+      <button class="nav-link" data-view="Tasks"><span class="nav-icon">☷</span><span class="nav-text">To-do lists</span></button>
+      <button class="nav-link" data-view="Checklist"><span class="nav-icon">☑</span><span class="nav-text">Checklist</span></button>
+      <button class="nav-link" data-view="Meetings"><span class="nav-icon">◷</span><span class="nav-text">Meetings</span></button>
+      <button class="nav-link" data-view="Notes"><span class="nav-icon">▤</span><span class="nav-text">Notes</span></button>
+      <button class="nav-link" data-view="Completed"><span class="nav-icon">✓</span><span class="nav-text">Completed</span></button>
+      <button class="nav-link" data-view="Folders"><span class="nav-icon">▤</span><span class="nav-text">Subject folders</span></button>
+      <div class="nav-label">SUBJECTS</div><div id="folder-shortcuts" class="folder-list"></div>
+      <div class="sidebar-bottom"><button class="nav-link" id="enable-reminders"><span class="nav-icon">♧</span><span class="nav-text">Due-date reminders</span></button><button class="nav-link" id="sidebar-new"><span class="nav-icon">＋</span><span class="nav-text">Add task or meeting</span></button><button class="nav-link" id="sidebar-background"><span class="nav-icon">◐</span><span class="nav-text">Background colors</span></button><p class="sidebar-hint small quiet" style="padding:0 10px">Your planner is securely connected to your Firebase account.</p></div>
+    </aside>
+    <main id="workspace" class="workspace"></main>
+    <aside id="details" class="details"></aside>
+  </div>
+</section>
+<div id="modal-root"></div><div id="toast" class="toast hidden" role="status"></div>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+import { getAuth, setPersistence, browserLocalPersistence, browserSessionPersistence, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, sendPasswordResetEmail, updateProfile as firebaseUpdateProfile, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+import { getFirestore, initializeFirestore, persistentLocalCache, persistentMultipleTabManager, collection, doc, getDocs, setDoc, deleteDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+import { getStorage, ref as storageRef, uploadBytes, getDownloadURL, deleteObject } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-storage.js";
+(() => {
+'use strict';
+const IS_FILE=location.protocol==='file:';
+const firebaseConfig={
+ apiKey:"AIzaSyDb0dsCQnUqPsI266ICPGS4FqLFZeVKLEY",
+ authDomain:"my-personal-calendar-a6ef3.firebaseapp.com",
+ projectId:"my-personal-calendar-a6ef3",
+ storageBucket:"my-personal-calendar-a6ef3.firebasestorage.app",
+ messagingSenderId:"596956001408",
+ appId:"1:596956001408:web:bc8b8b76175a7f9bd8e265",
+ measurementId:"G-F8YXLCD0F1"
+};
+const firebaseApp=initializeApp(firebaseConfig);
+const firebaseAuth=getAuth(firebaseApp);
+// Firestore persistent cache improves offline reliability and coordinates multiple tabs on the same device.
+// If browser storage is unavailable, fall back to the SDK's default cache instead of blocking the app.
+let firebaseDb;
+try{
+ firebaseDb=initializeFirestore(firebaseApp,{localCache:persistentLocalCache({tabManager:persistentMultipleTabManager()})});
+}catch(cacheError){
+ console.warn('Persistent multi-tab Firestore cache is unavailable; using the default cache.',cacheError);
+ firebaseDb=getFirestore(firebaseApp);
+}
+const firebaseStorage=getStorage(firebaseApp);
+function readPref(key,fallback){try{const value=window.localStorage.getItem(key);return value===null?fallback:value}catch(_){return fallback}}
+function writePref(key,value){try{window.localStorage.setItem(key,String(value))}catch(_){/* file:// and privacy-restricted browsers may block storage */}}
+const state={user:null,events:[],folders:[],view:'Calendar',mode:'Month',anchor:new Date(),selected:toDateKey(new Date()),folderFilter:'all',sidebarCollapsed:false,detailsVisible:!window.matchMedia('(max-width:760px)').matches,activeUploads:0,uploadWarning:false,dark:readPref('dayframe-html-dark','false')==='true',background:readPref('dayframe-html-bg','sage')||'sage',authMode:'login',editing:null,editAttachments:[],pendingFiles:[],unsubEvents:null,unsubFolders:null,unsubPreferences:null,toastTimer:null,syncError:null,lastProblem:null,lastProblemType:null,runtimePending:[],cloudRecovery:{events:new Map(),folders:new Map()},recoveryWritesInFlight:new Set(),idbWriteChain:Promise.resolve(),profileLoadToken:0,selectedNoteId:null,noteSearch:'',noteMobileEditor:false,noteSaveTimer:null,noteLocalSaveTimer:null,detailsBeforeNotes:null};
+let reminderCheckTimer=null,localMutationRevision=0;
+let cloudAuthUid=null;
+const dirtyLocalRecords=new Set();
+const localObjectUrls=new Set();
+const $=id=>document.getElementById(id);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const uid=()=>Math.random().toString(36).slice(2,9)+Date.now().toString(36);
+function toDateKey(d){return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`}
+function fromDateKey(s){const [y,m,d]=String(s||toDateKey(new Date())).split('-').map(Number);return new Date(y||2026,(m||1)-1,d||1,12)}
+function offsetDate(s,days){const d=fromDateKey(s);d.setDate(d.getDate()+days);return toDateKey(d)}
+function dateLabel(s,opts={weekday:'short',month:'short',day:'numeric'}){return fromDateKey(s).toLocaleDateString(undefined,opts)}
+function fullDate(s){return fromDateKey(s).toLocaleDateString(undefined,{weekday:'long',month:'long',day:'numeric',year:'numeric'})}
+function fmtMonth(d){return d.toLocaleDateString(undefined,{month:'long',year:'numeric'})}
+function fmtTime(s){if(!s)return 'Anytime';const [h,m]=s.split(':').map(Number);return `${((h+11)%12)+1}:${String(m).padStart(2,'0')} ${h>=12?'PM':'AM'}`}
+function timeRange(e){if(!e.startTime)return 'Anytime';return `${fmtTime(e.startTime)}${e.endTime?'–'+fmtTime(e.endTime):''}`}
+function friendlyDateTime(s){return dateLabel(s,{month:'short',day:'numeric'})}
+function notify(message){$('toast').textContent=message;$('toast').classList.remove('hidden');clearTimeout(state.toastTimer);state.toastTimer=setTimeout(()=>$('toast').classList.add('hidden'),String(message).length>100?6500:2800)}
+function setAuthMessage(message,success=false){const el=$('auth-message');el.textContent=message;el.classList.remove('hidden','auth-error','auth-notice');el.classList.add(success?'auth-notice':'auth-error')}
+function clearAuthMessage(){$('auth-message').textContent='';$('auth-message').classList.add('hidden')}
+const LOCAL_DB_NAME='dayframe-local-v1';
+const LOCAL_ACCOUNTS_KEY='dayframe-local-accounts-v1';
+const CLOUD_DATA_NOTICE='Your planner syncs across devices when each device is signed into the same Firebase Login ID and is online.';
+const PRIVATE_LOGIN_DOMAIN='login.dayframe.invalid';
+const LOGIN_ID_PATTERN=/^[a-z0-9](?:[a-z0-9._-]{1,22}[a-z0-9])$/;
+const EMAIL_PATTERN=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+function normalizeLoginId(value){return String(value||'').trim().toLowerCase()}
+function isValidLoginId(value){const id=normalizeLoginId(value);return LOGIN_ID_PATTERN.test(id)&&!id.includes('..')}
+function firebaseIdentifierForInput(raw,mode){
+ const value=String(raw||'').trim().toLowerCase();
+ if(mode==='register'){
+  if(!isValidLoginId(value))throw new Error('Choose a Login ID with 3-24 characters. Use letters, numbers, dots, underscores, or hyphens. Do not start or end with punctuation.');
+  return {email:`${value}@${PRIVATE_LOGIN_DOMAIN}`,loginId:value,legacyEmail:false};
+ }
+ // Backwards compatibility: accounts registered with a real email before this update can still sign in.
+ if(value.includes('@')){
+  if(!EMAIL_PATTERN.test(value))throw new Error('Enter a valid Login ID, or the original email address for an older account.');
+  return {email:value,loginId:'',legacyEmail:true};
+ }
+ if(!isValidLoginId(value))throw new Error('Enter your Login ID. It must be 3-24 letters, numbers, dots, underscores, or hyphens.');
+ return {email:`${value}@${PRIVATE_LOGIN_DOMAIN}`,loginId:value,legacyEmail:false};
+}
+function userLoginId(user){const email=String(user?.email||'').toLowerCase(),suffix='@'+PRIVATE_LOGIN_DOMAIN;return email.endsWith(suffix)?email.slice(0,-suffix.length):''}
+function userDisplayLabel(user){return String(user?.displayName||userLoginId(user)||'Dayframe user')}
+function setAuthMode(mode){
+ state.authMode=mode;
+ document.querySelectorAll('[data-auth-mode]').forEach(b=>b.classList.toggle('active',b.dataset.authMode===mode));
+ $('name-field').classList.toggle('hidden',mode!=='register');
+ $('auth-title').textContent=mode==='register'?'Make space for what matters.':'Welcome back.';
+ $('auth-subtitle').textContent=mode==='register'?'Create a private Login ID and use it to access your planner across devices.':'Enter your private Login ID to load your planner from Firebase.';
+ $('login-id-help').textContent=mode==='register'?'Choose 3-24 letters, numbers, dots, underscores, or hyphens. Your ID is case-insensitive. No email address is required.':'Use the same Login ID on every device. Older accounts may still sign in with the original email address.';
+ $('auth-login-id').placeholder=mode==='register'?'Create a private Login ID':'Your Login ID';
+ $('auth-password').autocomplete=mode==='register'?'new-password':'current-password';
+ $('auth-submit').textContent=mode==='register'?'Create account →':'Sign in to Dayframe →';
+ $('forgot-password').classList.toggle('hidden',mode!=='login');
+ $('forgot-password').textContent='Forgot your password?';
+ clearAuthMessage();
+}
+document.querySelectorAll('[data-auth-mode]').forEach(b=>b.addEventListener('click',()=>setAuthMode(b.dataset.authMode)));
+$('remember-me').addEventListener('change',()=>{$('remember-state').textContent=$('remember-me').checked?'On':'Off';$('remember-help').textContent=$('remember-me').checked?'On: keep me signed in on this device until I sign out.':'Off: sign me out when this browser session ends.'});
+function friendlyFirebaseError(err){
+ const code=String(err?.code||'');
+ const messages={
+  'auth/email-already-in-use':'That Login ID is already taken. Choose another ID or sign in.',
+  'auth/invalid-email':'That Login ID was rejected. Check its format and try again.',
+  'auth/weak-password':'Use a password with at least 6 characters. A longer password is safer.',
+  'auth/invalid-credential':'The Login ID or password is incorrect.',
+  'auth/user-not-found':'No account matched that Login ID. Check it or create an account.',
+  'auth/wrong-password':'The Login ID or password is incorrect.',
+  'auth/too-many-requests':'Too many attempts. Wait a while, then try again.',
+  'auth/network-request-failed':'Could not connect to Firebase. Check your internet connection and try again.',
+  'auth/operation-not-allowed':'Firebase Email/Password Authentication is not enabled. Enable it in Firebase Console; this is used internally for Login ID accounts.',
+  'permission-denied':'Firebase denied access. Publish the Firestore security rules included in this project.',
+  'storage/unauthorized':'Firebase Storage denied access. Publish the Storage security rules included in this project.',
+  'unavailable':'Firebase is temporarily unavailable. Check your connection and try again.'
+ };
+ if(messages[code])return messages[code];
+ if(code==='failed-precondition')return 'Firebase setup is incomplete. Create the Cloud Firestore database in Firebase Console and retry.';
+ return err?.message||'Firebase could not complete this action. Check the Firebase Console setup and try again.';
+}
+$('auth-form').addEventListener('submit',async e=>{
+ e.preventDefault();clearAuthMessage();
+ const identifierRaw=$('auth-login-id').value,password=$('auth-password').value,name=$('auth-name').value.trim(),mode=state.authMode;
+ if(!identifierRaw.trim()||!password){setAuthMessage('Enter your Login ID and password.');return}
+ if(password.length<6){setAuthMessage('Use a password with at least 6 characters.');return}
+ let identifier;
+ try{identifier=firebaseIdentifierForInput(identifierRaw,mode)}catch(validationError){setAuthMessage(validationError.message);return}
+ try{
+  $('auth-submit').disabled=true;$('auth-submit').textContent='Connecting securely…';
+  await setPersistence(firebaseAuth,$('remember-me').checked?browserLocalPersistence:browserSessionPersistence);
+  if(mode==='register'){
+   const credential=await createUserWithEmailAndPassword(firebaseAuth,identifier.email,password);
+   const displayName=(name||identifier.loginId).slice(0,60);
+   await firebaseUpdateProfile(credential.user,{displayName});
+   $('user-name').textContent=displayName;$('avatar-initials').textContent=displayName.trim().charAt(0).toUpperCase();
+  }else{
+   await signInWithEmailAndPassword(firebaseAuth,identifier.email,password);
+  }
+ }catch(err){setAuthMessage(friendlyFirebaseError(err))}
+ finally{$('auth-submit').disabled=false;$('auth-submit').textContent=state.authMode==='register'?'Create account →':'Sign in to Dayframe →'}
+});
+$('forgot-password').addEventListener('click',async()=>{
+ clearAuthMessage();
+ const raw=$('auth-login-id').value.trim().toLowerCase();
+ if(!raw){setAuthMessage('Enter your Login ID first.');return}
+ if(!raw.includes('@')||raw.endsWith('@'+PRIVATE_LOGIN_DOMAIN)){
+  setAuthMessage('This private Login ID has no recovery email. If you forget its password, email reset is unavailable. Keep the password in a password manager.');return;
+ }
+ if(!EMAIL_PATTERN.test(raw)){setAuthMessage('Enter the original email address for your older account.');return}
+ try{await sendPasswordResetEmail(firebaseAuth,raw);setAuthMessage('Password reset email sent. Check your inbox and spam folder.',true)}catch(err){setAuthMessage(friendlyFirebaseError(err))}
+});
+let localDbPromise=null;
+function idbOpen(){
+ if(!('indexedDB' in window))return Promise.reject(new Error('IndexedDB is not available in this browser.'));
+ if(!localDbPromise)localDbPromise=new Promise((resolve,reject)=>{const request=indexedDB.open(LOCAL_DB_NAME,1);request.onupgradeneeded=()=>{if(!request.result.objectStoreNames.contains('records'))request.result.createObjectStore('records',{keyPath:'key'})};request.onsuccess=()=>resolve(request.result);request.onerror=()=>reject(request.error||new Error('Could not open the local cache database.'));request.onblocked=()=>reject(new Error('The local cache database is blocked by another tab.'))}).catch(err=>{localDbPromise=null;throw err});
+ return localDbPromise;
+}
+async function idbGet(key){const db=await idbOpen();return new Promise((resolve,reject)=>{const tx=db.transaction('records','readonly');const req=tx.objectStore('records').get(key);req.onsuccess=()=>resolve(req.result?req.result.value:undefined);req.onerror=()=>reject(req.error||new Error('Could not read cached data.'))})}
+async function idbPut(key,value){const db=await idbOpen();return new Promise((resolve,reject)=>{const tx=db.transaction('records','readwrite');tx.objectStore('records').put({key,value,updatedAt:Date.now()});tx.oncomplete=()=>resolve(true);tx.onerror=()=>reject(tx.error||new Error('Could not write cached data.'));tx.onabort=()=>reject(new Error('The local cache write was interrupted.'))})}
+async function idbDelete(key){const db=await idbOpen();return new Promise((resolve,reject)=>{const tx=db.transaction('records','readwrite');tx.objectStore('records').delete(key);tx.oncomplete=()=>resolve(true);tx.onerror=()=>reject(tx.error||new Error('Could not delete cached data.'));tx.onabort=()=>reject(new Error('The local cache cleanup was interrupted.'))})}
+async function idbListRecords(){const db=await idbOpen();return new Promise((resolve,reject)=>{const tx=db.transaction('records','readonly');const req=tx.objectStore('records').getAll();req.onsuccess=()=>resolve(req.result||[]);req.onerror=()=>reject(req.error||new Error('Could not list cached data.'))})}
+function persistIdb(key,value){let snapshot=value;try{if(!(value instanceof Blob))snapshot=JSON.parse(JSON.stringify(value))}catch(err){console.warn('Could not prepare a local cache snapshot.',err);return Promise.resolve(false)}state.idbWriteChain=(state.idbWriteChain||Promise.resolve()).catch(()=>{}).then(()=>idbPut(key,snapshot)).catch(err=>{console.warn('Local cache backup could not be written.',err);return false});return state.idbWriteChain}
+function userKey(kind,userId=state.user?.uid){return userId?`dayframe-${kind}-v1-${userId}`:null}
+function readUserJson(kind,fallback){try{const key=userKey(kind);if(!key)return fallback;const raw=localStorage.getItem(key);return raw?JSON.parse(raw):fallback}catch(e){console.warn('Local planner cache could not be read.',e);return fallback}}
+function writeUserJson(kind,value){try{const key=userKey(kind);if(key)localStorage.setItem(key,JSON.stringify(value));return true}catch(e){console.warn('Local planner cache write failed; IndexedDB backup will be used.',e);return false}}
+function mergeDocsById(base,extra){const map=new Map();for(const item of base||[])if(item&&item.id)map.set(item.id,item);for(const item of extra||[])if(item&&item.id)map.set(item.id,{...(map.get(item.id)||{}),...item,id:item.id});return [...map.values()]}
+function recordTimestamp(item){for(const raw of [item?.updatedAt,item?.createdAt]){if(raw===null||raw===undefined||raw==='')continue;const parsed=typeof raw==='number'?raw:Date.parse(raw);if(Number.isFinite(parsed))return parsed;}return 0}
+function mergeRecoveredDocs(base,extra){const map=new Map();for(const item of [...(base||[]),...(extra||[])]){if(!item?.id)continue;const prior=map.get(item.id);if(!prior||recordTimestamp(item)>recordTimestamp(prior))map.set(item.id,{...(prior||{}),...item,id:item.id});else if(recordTimestamp(item)===recordTimestamp(prior))map.set(item.id,{...prior,...item,id:item.id});}return [...map.values()]}
+// Reconcile the cloud snapshot with the freshest local cache. Local-only records are
+// migrated to Firebase, and newer local edits win. Newer cloud records stay authoritative.
+function reconcileCloudItems(remoteItems,localItems){
+ const remoteById=new Map((remoteItems||[]).filter(item=>item?.id).map(item=>[item.id,item]));
+ const merged=new Map(remoteById);const toUpload=[];
+ for(const local of localItems||[]){if(!local?.id)continue;const remote=remoteById.get(local.id);
+  if(!remote){merged.set(local.id,local);toUpload.push(local);continue;}
+  const localTime=recordTimestamp(local),remoteTime=recordTimestamp(remote);
+  const changedLegacyRecord=localTime===remoteTime&&!local.updatedAt&&!remote.updatedAt&&JSON.stringify(cleanCloudRecord(local))!==JSON.stringify(cleanCloudRecord(remote));
+  if(localTime>remoteTime||changedLegacyRecord){merged.set(local.id,local);toUpload.push(local);}
+ }
+ return {items:[...merged.values()],toUpload};
+}
+function pendingRecoveryCount(){return ['events','folders'].reduce((n,k)=>n+(state.cloudRecovery?.[k]?.size||0),0)}
+function mergeCloudWithPending(remoteItems,collectionName){
+ const map=new Map((remoteItems||[]).filter(item=>item?.id).map(item=>[item.id,item]));
+ const pending=state.cloudRecovery?.[collectionName];if(!pending)return [...map.values()];
+ for(const [id,local] of pending){if(local===null){map.delete(id);continue;}const remote=map.get(id);if(!remote||recordTimestamp(local)>=recordTimestamp(remote))map.set(id,local);else pending.delete(id);}
+ return [...map.values()];
+}
+function queueCloudRecoveryWrites(collectionName,items){
+ const pending=state.cloudRecovery[collectionName];
+ for(const item of items||[]){if(!item?.id)continue;const exists=pending.has(item.id);const prior=pending.get(item.id);
+  const same=exists&&prior&&typeof prior==='object'&&JSON.stringify(cleanCloudRecord(prior))===JSON.stringify(cleanCloudRecord(item));
+  pending.set(item.id,item);
+  if(!same)void writeRecordToCloud(collectionName,item.id,'set');
+ }
+}
+function cleanCloudRecord(value){
+ if(Array.isArray(value))return value.map(cleanCloudRecord);
+ if(value&&typeof value==='object'){
+  const out={};
+  for(const [key,item] of Object.entries(value)){
+   if(key==='localKey'||key==='blob'||key==='file')continue;
+   if(item!==undefined)out[key]=cleanCloudRecord(item);
+  }
+  return out;
+ }
+ return value;
+}
+function eventsCollection(uidValue=state.user?.uid){return collection(firebaseDb,'users',uidValue,'events')}
+function foldersCollection(uidValue=state.user?.uid){return collection(firebaseDb,'users',uidValue,'folders')}
+function preferencesRef(uidValue=state.user?.uid){return doc(firebaseDb,'users',uidValue,'settings','preferences')}
+function savePreferencesToCloud(uidValue=state.user?.uid){
+ if(!uidValue||state.user?.uid!==uidValue)return Promise.resolve();
+ const payload={dark:state.dark,background:state.background,updatedAt:new Date().toISOString()};
+ return setDoc(preferencesRef(uidValue),payload,{merge:true}).catch(err=>{console.warn('Cloud preferences could not be saved.',err)});
+}
+function startPreferencesListener(user){
+ const uidValue=user.uid;
+ try{state.unsubPreferences?.()}catch(_){}
+ state.unsubPreferences=onSnapshot(preferencesRef(uidValue),{includeMetadataChanges:true},snapshot=>{
+  if(!state.user||state.user.uid!==uidValue)return;
+  if(!snapshot.exists()){if(!snapshot.metadata?.fromCache)void savePreferencesToCloud(uidValue);return;}
+  const prefs=snapshot.data()||{};
+  const allowedBackgrounds=['sage','lavender','blush','blue','sand','mint'];
+  const nextDark=typeof prefs.dark==='boolean'?prefs.dark:state.dark;
+  const nextBackground=allowedBackgrounds.includes(prefs.background)?prefs.background:state.background;
+  if(nextDark!==state.dark||nextBackground!==state.background){state.dark=nextDark;state.background=nextBackground;applyTheme();}
+ },err=>{console.warn('Firebase preference sync failed.',err)});
+}
+function recordRef(collectionName,id,uidValue=state.user?.uid){return doc(firebaseDb,'users',uidValue,collectionName,id)}
+function updateSyncStatus(message,mode='ok'){const el=$('sync-status');if(!el)return;el.textContent=message;el.dataset.state=mode;el.title=CLOUD_DATA_NOTICE}
+function syncStatusFromSnapshot(){updateSyncStatus('Changes queued for Firebase','busy')}
+function cacheLocalData(){
+ if(!state.user)return;
+ const data={events:state.events,folders:state.folders,updatedAt:new Date().toISOString()};
+ writeUserJson('data',data);const key=userKey('data');if(key)persistIdb(key,data);
+}
+function restoreLocalData(){const saved=readUserJson('data',{});state.events=Array.isArray(saved.events)?saved.events:[];state.folders=Array.isArray(saved.folders)?saved.folders:[]}
+async function restoreIndexedDbForUser(userId){
+ // Planner records are reconciled before listeners start. Restore only the avatar here,
+ // so an older IndexedDB snapshot cannot re-introduce deleted records after cloud merge.
+ try{const avatar=await idbGet(`dayframe-avatar-v1-${userId}`);if(!state.user||state.user.uid!==userId)return;if(typeof avatar==='string'&&avatar.startsWith('data:image/'))renderAvatarUrl(avatar)}catch(err){console.warn('IndexedDB profile cache could not be restored.',err)}
+}
+function preserveLocalAttachmentKeys(remoteEvents,previousEvents){
+ const oldById=new Map((previousEvents||[]).map(e=>[e.id,e]));
+ return (remoteEvents||[]).map(remote=>{
+  const old=oldById.get(remote.id);if(!old?.attachments?.length||!remote.attachments?.length)return remote;
+  const oldAttachments=new Map(old.attachments.map(a=>[a.id,a]));
+  return {...remote,attachments:remote.attachments.map(a=>{const local=oldAttachments.get(a.id);return local?.localKey&&!a.localKey?{...a,localKey:local.localKey}:a})};
+ });
+}
+async function findLegacyLocalData(user){
+ const key=`dayframe-data-v1-${user.uid}`;const candidates=[];
+ try{const raw=localStorage.getItem(key);if(raw){const data=JSON.parse(raw);if(data&&Array.isArray(data.events)&&Array.isArray(data.folders))candidates.push({uid:user.uid,data,source:'localStorage'})}}catch(err){console.warn('LocalStorage planner cache could not be read.',err)}
+ try{const data=await idbGet(key);if(data&&Array.isArray(data.events)&&Array.isArray(data.folders))candidates.push({uid:user.uid,data,source:'IndexedDB'})}catch(err){console.warn('IndexedDB planner cache could not be read.',err)}
+ if(!candidates.length)return null;
+ candidates.sort((a,b)=>recordTimestamp({updatedAt:b.data.updatedAt})-recordTimestamp({updatedAt:a.data.updatedAt}));
+ return candidates[0];
+}
+function stopCloudListeners(){try{state.unsubEvents?.()}catch(_){}try{state.unsubFolders?.()}catch(_){}try{state.unsubPreferences?.()}catch(_){}state.unsubEvents=null;state.unsubFolders=null;state.unsubPreferences=null;}
+function startCloudListeners(user){
+ stopCloudListeners();const uidValue=user.uid;
+ state.unsubEvents=onSnapshot(eventsCollection(uidValue),{includeMetadataChanges:true},snapshot=>{
+  if(!state.user||state.user.uid!==uidValue)return;
+  const prior=state.events;const fresh=snapshot.docs.map(d=>({...d.data(),id:d.id}));
+  const reconciled=reconcileCloudItems(fresh,prior);
+  state.events=preserveLocalAttachmentKeys(mergeCloudWithPending(reconciled.items,'events'),prior);
+  queueCloudRecoveryWrites('events',reconciled.toUpload);
+  cacheLocalData();renderWorkspace();renderDetails();
+  const pending=pendingRecoveryCount();updateSyncStatus(pending?`${pending} item(s) awaiting cloud sync`:snapshot.metadata?.hasPendingWrites?'Changes queued for cloud sync':navigator.onLine?'Cloud data up to date':'Offline mode',pending||snapshot.metadata?.hasPendingWrites||!navigator.onLine?'busy':'ok');
+ },err=>{console.error('Firestore event sync failed',err);updateSyncStatus('Firebase sync error','error');notify(`Could not sync planner items: ${friendlyFirebaseError(err)}`)});
+ state.unsubFolders=onSnapshot(foldersCollection(uidValue),{includeMetadataChanges:true},snapshot=>{
+  if(!state.user||state.user.uid!==uidValue)return;
+  const prior=state.folders;const fresh=snapshot.docs.map(d=>({...d.data(),id:d.id}));
+  const reconciled=reconcileCloudItems(fresh,prior);
+  state.folders=mergeCloudWithPending(reconciled.items,'folders').sort((a,b)=>(a.name||'').localeCompare(b.name||''));
+  queueCloudRecoveryWrites('folders',reconciled.toUpload);
+  cacheLocalData();renderSidebar();renderWorkspace();renderDetails();
+  const pending=pendingRecoveryCount();updateSyncStatus(pending?`${pending} item(s) awaiting cloud sync`:snapshot.metadata?.hasPendingWrites?'Changes queued for cloud sync':navigator.onLine?'Cloud data up to date':'Offline mode',pending||snapshot.metadata?.hasPendingWrites||!navigator.onLine?'busy':'ok');
+ },err=>{console.error('Firestore folder sync failed',err);updateSyncStatus('Firebase sync error','error');notify(`Could not sync folders: ${friendlyFirebaseError(err)}`)});
+ startPreferencesListener(user);
+}
+async function writeRecordToCloud(collectionName,docId,type){
+ const userId=state.user?.uid;if(!userId)return;
+ const recoveryMap=state.cloudRecovery[collectionName];const prop=collectionName==='events'?'events':'folders';
+ const inFlightKey=`${userId}:${collectionName}:${docId}`;
+ let record=null;
+ if(type!=='delete'){
+  record=(state[prop]||[]).find(item=>item.id===docId);
+  if(!record){const pending=recoveryMap.get(docId);if(pending&&typeof pending==='object')record=pending;}
+  if(!record)return;
+  record=JSON.parse(JSON.stringify(record));recoveryMap.set(docId,record);
+ }else recoveryMap.set(docId,null);
+ // Always replace the pending version with the latest edit even if an older write is
+ // still in flight. Its finally-handler will submit the newest version after it settles.
+ if(state.recoveryWritesInFlight.has(inFlightKey))return;
+ const sentVersion=type==='delete'?'delete':JSON.stringify(cleanCloudRecord(record));
+ state.recoveryWritesInFlight.add(inFlightKey);
+ try{
+  // Firestore applies writes optimistically and queues them while offline. Keep a local
+  // pending copy until acknowledgement, so a stale listener snapshot cannot erase edits.
+  const operation=type==='delete'?deleteDoc(recordRef(collectionName,docId,userId)):setDoc(recordRef(collectionName,docId,userId),cleanCloudRecord(record));
+  if(navigator.onLine)updateSyncStatus('Saving changes','busy');else updateSyncStatus('Offline changes queued','busy');
+  await operation;
+  if(state.user?.uid===userId){
+   const currentPending=recoveryMap.get(docId);
+   const stillSame=type==='delete'?currentPending===null:(currentPending&&typeof currentPending==='object'&&JSON.stringify(cleanCloudRecord(currentPending))===sentVersion);
+   if(stillSame)recoveryMap.delete(docId);
+   const pending=pendingRecoveryCount();updateSyncStatus(pending?`${pending} item(s) awaiting cloud sync`:'Cloud data up to date',pending?'busy':'ok');
+   cacheLocalData();
+  }
+ }catch(err){
+  console.error('Firebase write failed',err);
+  if(state.user?.uid===userId){cacheLocalData();updateSyncStatus('Cloud save needs attention','error');notify(`Cloud save failed: ${friendlyFirebaseError(err)}. The local copy is retained and will retry when the connection returns or the app is reopened. If this repeats, check your Firebase rules and connection.`)}
+ }finally{
+  state.recoveryWritesInFlight.delete(inFlightKey);
+  if(state.user?.uid===userId&&recoveryMap.has(docId)){
+   const pending=recoveryMap.get(docId);
+   const propItems=state[prop]||[];const current=propItems.find(item=>item.id===docId);
+   const currentVersion=pending===null?'delete':current?JSON.stringify(cleanCloudRecord(current)):null;
+   if(currentVersion&&currentVersion!==sentVersion)queueMicrotask(()=>void writeRecordToCloud(collectionName,docId,pending===null?'delete':'set'));
+  }
+ }
+}
+function retryPendingCloudRecovery(user=state.user){
+ if(!user||state.user?.uid!==user.uid)return;
+ for(const collectionName of ['events','folders'])for(const [docId,record] of state.cloudRecovery[collectionName])void writeRecordToCloud(collectionName,docId,record===null?'delete':'set');
+}
+function applyLocalMutation(op){
+ const prop=op.collection==='events'?'events':'folders';let items=state[prop]||[];
+ if(op.type==='delete')items=items.filter(item=>item.id!==op.docId);
+ else if(op.type==='set')items=mergeDocsById(items,[{...op.data,id:op.docId}]);
+ else if(op.type==='update')items=items.map(item=>item.id===op.docId?{...item,...op.data,id:op.docId}:item);
+ if(op.collection==='folders')items.sort((a,b)=>(a.name||'').localeCompare(b.name||''));
+ state[prop]=items;localMutationRevision++;cacheLocalData();syncStatusFromSnapshot();
+}
+function saveLocalRecord(collectionName,docId,type,data){
+ const now=new Date().toISOString();const normalizedData=data&&type!=='delete'?{...data,updatedAt:data.updatedAt||now}:data;
+ const op={opId:uid(),userId:state.user?.uid||null,collection:collectionName,docId,type,data:normalizedData||null,createdAt:now};
+ applyLocalMutation(op);void writeRecordToCloud(collectionName,docId,type);return op;
+}
+async function enterApp(user){
+ if(!user)return;
+ if(state.user&&state.user.uid!==user.uid)stopCloudListeners();
+ state.cloudRecovery={events:new Map(),folders:new Map()};state.recoveryWritesInFlight=new Set();
+ state.user=user;cloudAuthUid=user.uid;state.events=[];state.folders=[];state.runtimePending=[];state.syncError=null;
+ $('auth-screen').classList.add('hidden');$('app').classList.remove('hidden');const publicLabel=userDisplayLabel(user);$('user-name').textContent=publicLabel;$('avatar-initials').textContent=publicLabel.trim().charAt(0).toUpperCase();renderAvatarUrl(user.photoURL||null);applyTheme();
+ // Render the per-user cache before any network await so the calendar appears immediately.
+ try{restoreLocalData()}catch(cacheError){console.warn('Local planner cache could not be restored on startup.',cacheError)}
+ renderSidebar();renderWorkspace();renderDetails();updateSyncStatus('Connecting to Firebase…','busy');
+ let remoteEvents,remoteFolders;
+ try{[remoteEvents,remoteFolders]=await Promise.all([getDocs(eventsCollection(user.uid)),getDocs(foldersCollection(user.uid))]);}
+ catch(loadError){
+  console.error('Initial Firestore load failed; keeping the local planner visible.',loadError);
+  if(!state.user||state.user.uid!==user.uid)return;
+  updateSyncStatus('Cloud connection failed','error');renderSidebar();renderWorkspace();renderDetails();
+  // Attach listeners anyway: Firestore may reconnect and deliver a valid snapshot later.
+  // The listeners reconcile cloud data with the local cache without discarding local-only items.
+  startCloudListeners(user);startDueReminderChecker(user);
+  notify(`Could not load cloud data: ${friendlyFirebaseError(loadError)}. Your local planner copy remains visible.`);
+  return;
+ }
+ if(!state.user||state.user.uid!==user.uid)return;
+ try{
+  const previous=await findLegacyLocalData(user);
+  const localEvents=previous?previous.data.events:(state.events||[]);
+  const localFolders=previous?previous.data.folders:(state.folders||[]);
+  const cloudEvents=remoteEvents.docs.map(d=>({...d.data(),id:d.id}));
+  const cloudFolders=remoteFolders.docs.map(d=>({...d.data(),id:d.id}));
+  const eventsResult=reconcileCloudItems(cloudEvents,localEvents);
+  const foldersResult=reconcileCloudItems(cloudFolders,localFolders);
+  state.events=preserveLocalAttachmentKeys(eventsResult.items,localEvents);
+  state.folders=foldersResult.items.sort((a,b)=>(a.name||'').localeCompare(b.name||''));
+  // Any desktop-only or newer cached records become pending writes before live listeners
+  // attach, preventing the initial cloud snapshot from hiding unsynced local records.
+  cacheLocalData();renderSidebar();renderWorkspace();renderDetails();
+  queueCloudRecoveryWrites('events',eventsResult.toUpload);
+  queueCloudRecoveryWrites('folders',foldersResult.toUpload);
+  await restoreIndexedDbForUser(user.uid);if(!state.user||state.user.uid!==user.uid)return;
+  startCloudListeners(user);await loadProfilePhoto(user);startDueReminderChecker(user);
+  const recoveryCount=pendingRecoveryCount();
+  if(recoveryCount){updateSyncStatus(`${recoveryCount} item(s) awaiting cloud sync`,'busy');notify(`Found ${eventsResult.toUpload.length+foldersResult.toUpload.length} local planner item(s) that need syncing. They remain visible while Firebase retries.`)}
+  else updateSyncStatus('Connected to Firebase','ok');
+ }catch(err){console.error('Could not initialize Dayframe cloud data',err);throw err}
+}
+function exitApp(){
+ flushNoteAutosave();if(reminderCheckTimer){clearInterval(reminderCheckTimer);reminderCheckTimer=null}stopCloudListeners();state.user=null;state.events=[];state.folders=[];state.runtimePending=[];$('app').classList.add('hidden');$('auth-screen').classList.remove('hidden');setAuthMode('login');
+}
+onAuthStateChanged(firebaseAuth,async user=>{
+ if(user){
+  if(state.user?.uid===user.uid)return;
+  try{await enterApp(user)}catch(err){try{await signOut(firebaseAuth)}catch(_){}setAuthMessage(friendlyFirebaseError(err))}
+ }else{
+  if(state.user)exitApp();
+  else{$('app').classList.add('hidden');$('auth-screen').classList.remove('hidden')}
+ }
+});
+window.addEventListener('online',()=>{if(state.user){updateSyncStatus('Connection restored','busy');retryPendingCloudRecovery(state.user);void checkDueReminders(state.user)}});
+window.addEventListener('offline',()=>{if(state.user)updateSyncStatus('Offline changes are queued','busy')});
+document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible'&&state.user){flushNoteAutosave();cacheLocalData();if(navigator.onLine)retryPendingCloudRecovery(state.user);void checkDueReminders(state.user)}});
+window.addEventListener('pagehide',()=>{if(state.user){flushNoteAutosave();cacheLocalData()}});
+$('sync-status').addEventListener('click',()=>{const id=state.user?(userLoginId(state.user)||state.user.email||'legacy account'):'not signed in';const pending=pendingRecoveryCount();notify(`${CLOUD_DATA_NOTICE} Current account: ${id}. Reference: ${state.user?.uid?.slice(-6)||'none'}. ${pending?pending+' item(s) are waiting to sync.':''}`)});
+$('signout-button').addEventListener('click',async()=>{try{await signOut(firebaseAuth);notify('Signed out of Dayframe.')}catch(err){notify(friendlyFirebaseError(err))}});
+function applyTheme(){document.body.classList.toggle('dark',state.dark);document.body.classList.remove('bg-lavender','bg-blush','bg-blue','bg-sand','bg-mint');if(state.background!=='sage')document.body.classList.add('bg-'+state.background);$('theme-button').textContent=state.dark?'Light mode':'Dark mode';$('theme-button').title=state.dark?'Switch to light appearance':'Switch to dark appearance';document.querySelectorAll('[data-bg]').forEach(b=>b.classList.toggle('active',b.dataset.bg===state.background));writePref('dayframe-html-dark',String(state.dark));writePref('dayframe-html-bg',state.background)}
+$('theme-button').addEventListener('click',()=>{state.dark=!state.dark;applyTheme();void savePreferencesToCloud()});$('background-button').addEventListener('click',()=>$('background-picker').classList.toggle('hidden'));$('close-background').addEventListener('click',()=>$('background-picker').classList.add('hidden'));document.querySelectorAll('[data-bg]').forEach(b=>b.addEventListener('click',()=>{state.background=b.dataset.bg;applyTheme();void savePreferencesToCloud()}));
+$('profile-button').addEventListener('click',()=>$('profile-upload').click());
+function looksLikeImage(file){return !!file&&(String(file.type||'').startsWith('image/')||/\.(jpe?g|png|webp|gif|bmp|avif|heic|heif)$/i.test(file.name||''))}
+function looksLikeHeic(file){return /\.(heic|heif)$/i.test(file?.name||'')||/image\/(heic|heif)/i.test(file?.type||'')}
+let heicConverterPromise=null;
+async function loadHeicConverter(){
+ if(typeof window.heic2any==='function')return window.heic2any;
+ if(!heicConverterPromise)heicConverterPromise=(async()=>{for(const src of ['https://cdn.jsdelivr.net/npm/heic2any@0.0.4/dist/heic2any.min.js','https://unpkg.com/heic2any@0.0.4/dist/heic2any.min.js']){try{await new Promise((resolve,reject)=>{const script=document.createElement('script');script.src=src;script.async=true;script.onload=resolve;script.onerror=()=>{script.remove();reject(new Error('Could not load the HEIC image converter.'))};document.head.appendChild(script)});if(typeof window.heic2any==='function')return window.heic2any}catch(_){}}throw new Error('This looks like an iPhone HEIC/HEIF photo, and its converter could not load. Please export the photo as JPG or PNG and retry.')})();
+ return heicConverterPromise;
+}
+async function makeBrowserDecodableImage(file){if(!looksLikeImage(file))return file;if(!looksLikeHeic(file))return file;const convert=await loadHeicConverter();const result=await convert({blob:file,toType:'image/jpeg',quality:.9});const blob=Array.isArray(result)?result[0]:result;const name=(file.name||'profile-photo').replace(/\.(heic|heif)$/i,'')+'.jpg';return new File([blob],name,{type:'image/jpeg',lastModified:Date.now()})}
+function blobToDataUrl(blob){return new Promise((resolve,reject)=>{const reader=new FileReader();reader.onload=()=>resolve(String(reader.result||''));reader.onerror=()=>reject(reader.error||new Error('Could not read the compressed image.'));reader.readAsDataURL(blob)})}
+
+async function enableDueReminders(){
+ if(!state.user){notify('Sign in first to enable reminders.');return}
+ if(!('Notification' in window)){notify('This browser does not support browser notifications. Use calendar alerts while Dayframe is open.');return}
+ if(location.protocol!=='https:'&&location.hostname!=='localhost'){notify('Browser notifications require HTTPS. Open Dayframe from its deployed website.');return}
+ try{const permission=Notification.permission==='default'?await Notification.requestPermission():Notification.permission;if(permission!=='granted'){notify('Notifications are not enabled. Allow them in your browser or site settings.');return}notify('Due-date reminders are enabled on this device.');startDueReminderChecker(state.user);void checkDueReminders(state.user)}catch(err){console.warn('Could not request notification permission.',err);notify('Could not enable notifications on this device. Check browser permissions.')}
+}
+function reminderStoreKey(userId){return `dayframe-reminders-sent-v1-${userId}`}
+function readSentReminders(userId){try{const arr=JSON.parse(localStorage.getItem(reminderStoreKey(userId))||'[]');return new Set(Array.isArray(arr)?arr:[])}catch(_){return new Set()}}
+function writeSentReminder(userId,key){const sent=readSentReminders(userId);sent.add(key);try{localStorage.setItem(reminderStoreKey(userId),JSON.stringify([...sent].slice(-500)))}catch(_){} }
+async function checkDueReminders(user){if(!user||state.user?.uid!==user.uid||!('Notification' in window)||Notification.permission!=='granted'||document.visibilityState==='hidden')return;const now=Date.now(),sent=readSentReminders(user.uid);for(const item of state.events){if(item.done||item.reminderMinutes==null||!item.date||!item.id)continue;const minutes=Number(item.reminderMinutes);if(![0,10,60,1440].includes(minutes))continue;const due=new Date(`${item.date}T${item.startTime||'09:00'}:00`);if(Number.isNaN(due.getTime()))continue;const fireAt=due.getTime()-minutes*60000;const key=`${item.id}|${item.date}|${item.startTime||'09:00'}|${minutes}`;if(now<fireAt||now>due.getTime()+12*60*60*1000||sent.has(key))continue;writeSentReminder(user.uid,key);try{const notice=new Notification('Dayframe · Reminder',{body:`${item.title||'Untitled task'} · due ${dateLabel(item.date,{month:'short',day:'numeric'})}${item.startTime?' at '+fmtTime(item.startTime):''}`,icon:'./icons/icon-192.png',tag:`dayframe-${key}`});notice.onclick=()=>{window.focus();state.view='Calendar';state.selected=item.date;state.anchor=fromDateKey(item.date);renderWorkspace();renderDetails();notice.close();const current=state.events.find(e=>e.id===item.id);if(current)addEvent(current.date,current.kind,current)}}catch(err){console.warn('Reminder notification could not be displayed.',err)}}}
+function startDueReminderChecker(user){if(reminderCheckTimer)clearInterval(reminderCheckTimer);if(!user)return;void checkDueReminders(user);reminderCheckTimer=setInterval(()=>void checkDueReminders(user),30000)}
+function renderAvatarUrl(url){if(url){$('avatar-image').src=url;$('avatar-image').classList.remove('hidden');$('avatar-initials').classList.add('hidden')}else{$('avatar-image').removeAttribute('src');$('avatar-image').classList.add('hidden');$('avatar-initials').classList.remove('hidden')}}
+async function loadProfilePhoto(user){
+ if(!user||state.user?.uid!==user.uid)return;
+ try{const cloudUrl=await getDownloadURL(storageRef(firebaseStorage,`users/${user.uid}/profile/avatar`));if(state.user?.uid===user.uid)renderAvatarUrl(cloudUrl);return}catch(err){if(!['storage/object-not-found','storage/unauthorized'].includes(err?.code))console.warn('Could not load a profile photo from Firebase Storage.',err)}
+ if(user.photoURL){renderAvatarUrl(user.photoURL);return}
+ try{const cached=localStorage.getItem(`dayframe-avatar-v1-${user.uid}`);if(cached){renderAvatarUrl(cached);return}}catch(_){}
+ try{const cached=await idbGet(`dayframe-avatar-v1-${user.uid}`);if(typeof cached==='string'&&cached.startsWith('data:image/'))renderAvatarUrl(cached)}catch(err){console.warn('Could not load the local profile photo cache.',err)}
+}
+$('profile-upload').addEventListener('change',async e=>{
+ const chosen=e.target.files?.[0];e.target.value='';if(!chosen||!state.user)return;
+ if(!looksLikeImage(chosen)){notify('Choose a JPG, PNG, WebP, or iPhone HEIC/HEIF photo.');return}
+ if(chosen.size>40*1024*1024){notify('Choose a photo smaller than 40 MB. Very large photos may take too long to decode on a phone.');return}
+ const button=$('profile-button');button.disabled=true;const userId=state.user.uid;updateSyncStatus('Compressing photo…','busy');
+ try{const browserFile=await makeBrowserDecodableImage(chosen);const blob=await compressImage(browserFile,320,.76,440*1024);if(blob.size>450*1024)throw new Error('The compressed photo is still too large. Choose a smaller image.');const dataUrl=await blobToDataUrl(blob);if(!state.user||state.user.uid!==userId)throw new Error('Your sign-in session changed. Sign in again and retry.');const objectRef=storageRef(firebaseStorage,`users/${userId}/profile/avatar`);await uploadBytes(objectRef,blob,{contentType:blob.type||'image/jpeg'});const photoURL=await getDownloadURL(objectRef);renderAvatarUrl(photoURL);cacheProfileAvatarLocally(userId,dataUrl);await persistIdb(`dayframe-avatar-v1-${userId}`,dataUrl);updateSyncStatus('Profile photo saved to Firebase','ok');notify(`Profile photo saved to Firebase (${Math.max(1,Math.round(blob.size/1024))} KB)`)}catch(err){console.error('Profile photo upload failed',err);const message=/image format|image converter|decode|HEIC|HEIF/i.test(err?.message||'')?err.message:friendlyFirebaseError(err);notify(message)}finally{button.disabled=false}
+});
+function cacheProfileAvatarLocally(userId,dataUrl){try{localStorage.setItem(`dayframe-avatar-v1-${userId}`,dataUrl)}catch(err){console.warn('Could not cache the compressed profile photo in local browser storage.',err)}persistIdb(`dayframe-avatar-v1-${userId}`,dataUrl)}
+function sortedEvents(){return [...state.events].sort((a,b)=>`${a.date}T${a.startTime||'23:59'}${a.title}`.localeCompare(`${b.date}T${b.startTime||'23:59'}${b.title}`))}
+function eventLabel(e){const label=e.isMeeting?'Meeting':({task:'Task',checklist:'Checklist',note:'Note',schedule:'Schedule'})[e.kind]||'Schedule';return `${label}${e.done?' · DONE':''}`}
+function priorityLabel(p){return ({urgent:'Urgent',high:'High',normal:'Normal',low:'Low'})[p||'normal']||'Normal'}
+function eventPill(e){return `<button type="button" class="event-pill priority-${esc(e.priority||'normal')} ${e.done?'done':''}" data-edit-event="${esc(e.id)}" title="${esc(e.title)} · ${esc(eventLabel(e))}">${e.done?'✓ ':''}${e.isMeeting?'◷ ':e.kind==='checklist'?'☑ ':e.kind==='note'?'▤ ':''}${esc(e.title)}</button>`}
+function calendarCells(){const y=state.anchor.getFullYear(),m=state.anchor.getMonth();let start;if(state.mode==='Week'){start=fromDateKey(state.selected);start.setDate(start.getDate()-((start.getDay()+6)%7));return Array.from({length:7},(_,i)=>{const d=new Date(start);d.setDate(d.getDate()+i);return {date:d,key:toDateKey(d),inside:true}})}const first=new Date(y,m,1,12);start=new Date(first);start.setDate(start.getDate()-((first.getDay()+6)%7));return Array.from({length:42},(_,i)=>{const d=new Date(start);d.setDate(start.getDate()+i);return{date:d,key:toDateKey(d),inside:d.getMonth()===m}})}
+function filteredEvents(){let list=sortedEvents();if(state.view==='Tasks')list=list.filter(e=>e.kind==='task'&&!e.done);else if(state.view==='Checklist')list=list.filter(e=>e.kind==='checklist'&&!e.done);else if(state.view==='Meetings')list=list.filter(e=>e.isMeeting&&!e.done);else if(state.view==='Notes')list=list.filter(e=>e.kind==='note');else if(state.view==='Completed')list=list.filter(e=>e.done);if(state.folderFilter!=='all'&&state.view!=='Folders')list=list.filter(e=>e.folderId===state.folderFilter);return list}
+function hoverCard(key,day){return `<div class="hover-card"><strong>${esc(fullDate(key))}</strong>${day.length?day.slice(0,6).map(e=>`<div class="hover-line">${esc(e.title)}<small>${esc(timeRange(e))} · ${esc(eventLabel(e))} · ${esc(priorityLabel(e.priority))}</small></div>`).join(''):'<div class="hover-line quiet">No items planned. Click to add one.</div>'}${day.length>6?`<div class="hover-line quiet">Plus ${day.length-6} more. Select date for the full list.</div>`:''}</div>`}
+function renderCalendar(){const cells=calendarCells(),all=filteredEvents(),weekMode=state.mode==='Week',todayKey=toDateKey(new Date()),eventsByDate=new Map();for(const event of all){if(!event.date)continue;const bucket=eventsByDate.get(event.date);if(bucket)bucket.push(event);else eventsByDate.set(event.date,[event])}let head=`<div class="page-heading"><div><h1>Calendar</h1><p>Your whole picture, in one place. Select a date or use + to add an item.</p></div><div class="heading-actions"><div class="view-switch">${['Month','Week','Agenda'].map(v=>`<button type="button" class="${state.mode===v?'active':''}" data-calendar-mode="${v}">${v}</button>`).join('')}</div><button type="button" class="secondary-button" id="details-toggle" aria-expanded="${state.detailsVisible?'true':'false'}">${state.detailsVisible?'Hide details':'Show details'}</button><button type="button" class="secondary-button calendar-export-button" id="calendar-export-image" title="Download the current calendar view as a PNG image">▧ Export image</button><button type="button" class="primary-button" data-new-event="schedule">＋ Add item</button></div></div>`;
+if(state.mode==='Agenda'){const agendaEnd=offsetDate(state.selected,13);const upcoming=all.filter(e=>e.date>=state.selected&&e.date<=agendaEnd).slice(0,120);const groups={};upcoming.forEach(e=>(groups[e.date]??=[]).push(e));const body=Array.from({length:14},(_,i)=>offsetDate(state.selected,i)).map(day=>`<section class="agenda-day"><div class="agenda-day-title"><span>${esc(fullDate(day))}</span><button type="button" class="day-add" data-new-event="task" data-event-date="${day}" aria-label="Add an item on ${esc(fullDate(day))}" title="Add item">+</button></div><div class="entry-list">${(groups[day]||[]).map(entryRow).join('')||'<p class="quiet small agenda-empty">Nothing planned yet.</p>'}</div></section>`).join('');$('workspace').innerHTML=head+`<div class="calendar-toolbar"><button class="icon-button" data-navigate="-1" aria-label="Previous two-week agenda">‹</button><div class="calendar-title">${esc(dateLabel(state.selected,{month:'short',day:'numeric'}))} – ${esc(dateLabel(agendaEnd,{month:'short',day:'numeric',year:'numeric'}))}</div><button class="icon-button" data-navigate="1" aria-label="Next two-week agenda">›</button><button class="secondary-button" data-today>Today</button></div><div>${body}</div>`;return}
+const title=state.mode==='Week'?`${dateLabel(cells[0].key,{month:'short',day:'numeric'})} – ${dateLabel(cells[6].key,{month:'short',day:'numeric',year:'numeric'})}`:fmtMonth(state.anchor);
+const headings=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'].map(n=>`<div class="weekday">${n}</div>`).join('');const grid=cells.map(c=>{const items=eventsByDate.get(c.key)||[];return `<div class="day-cell ${c.inside?'':'outside'} ${c.key===state.selected?'selected':''} ${c.key===todayKey?'today':''}" data-select-date="${c.key}" tabindex="0" aria-label="${esc(fullDate(c.key))}"><div class="day-cell-top"><div class="day-num">${c.date.getDate()}</div><button type="button" class="day-add" data-new-event="task" data-event-date="${c.key}" aria-label="Add an item on ${esc(fullDate(c.key))}" title="Add item">+</button></div><div class="event-stack">${items.slice(0,weekMode?7:3).map(eventPill).join('')}${items.length>(weekMode?7:3)?`<div class="more-events">+${items.length-(weekMode?7:3)} more</div>`:''}</div>${hoverCard(c.key,items)}</div>`}).join('');$('workspace').innerHTML=head+`<div class="calendar-toolbar"><button class="icon-button" data-navigate="-1" aria-label="Previous ${state.mode.toLowerCase()}">‹</button><button class="icon-button" data-navigate="1" aria-label="Next ${state.mode.toLowerCase()}">›</button><div class="calendar-title">${esc(title)}</div><button class="secondary-button" data-today>Today</button><span class="calendar-mode-text quiet small">Select a date to see every item for that day.</span></div><div class="calendar-grid ${weekMode?'week-grid':''}">${headings}${grid}</div><div class="priority-legend"><span><i class="red"></i>Urgent</span><span><i class="orange"></i>High</span><span><i></i>Normal</span><span><i class="green"></i>Low</span></div>`}
+function emptyState(title,description){return `<div class="empty-state"><strong>${esc(title)}</strong>${esc(description)}<div style="margin-top:13px"><button class="primary-button" type="button" data-new-event="task">＋ Add task</button></div></div>`}
+function entryRow(e){const folder=state.folders.find(f=>f.id===e.folderId);const checks=Array.isArray(e.checklistItems)?e.checklistItems:[];const checklistHtml=e.kind==='checklist'&&checks.length?`<div class="checklist-preview">${checks.map((item,index)=>`<button type="button" class="checklist-item-toggle ${item.done?'checked':''}" data-toggle-checklist-item="${esc(e.id)}" data-checklist-index="${index}" aria-pressed="${item.done?'true':'false'}"><span class="checkmark">${item.done?'✓':' '}</span><span>${esc(item.text)}</span></button>`).join('')}</div>`:'';return `<div class="entry-row"><div class="entry-priority priority-${esc(e.priority||'normal')}"></div><div class="entry-row-main"><button type="button" class="entry-title entry-title-button ${e.done?'done':''}" data-edit-event="${esc(e.id)}" aria-label="Edit ${esc(e.title)}">${esc(e.title)}</button><div class="entry-meta"><span>${esc(dateLabel(e.date,{month:'short',day:'numeric',year:'numeric'}))}</span><span>${esc(timeRange(e))}</span><span>${esc(eventLabel(e))}</span><span>${esc(priorityLabel(e.priority))}</span>${e.kind==='checklist'&&checks.length?`<span>${checks.filter(x=>x.done).length}/${checks.length} checked</span>`:''}${folder?`<span>📁 ${esc(folder.name)}</span>`:''}</div>${e.notes?`<div class="entry-notes">${esc(e.notes)}</div>`:''}${checklistHtml}${e.attachments?.length?`<div class="entry-meta">📎 ${e.attachments.length} attachment(s)</div>`:''}</div><div class="entry-actions"><button class="mini-button" data-toggle-done="${esc(e.id)}" title="${e.done?'Mark not done':'Mark done'}" aria-label="${e.done?'Mark not done':'Mark done'}">${e.done?'↶':'✓'}</button><button class="mini-button" data-edit-event="${esc(e.id)}" title="Edit item" aria-label="Edit item">✎</button><button class="mini-button" data-delete-event="${esc(e.id)}" title="Delete item" aria-label="Delete item">×</button></div></div>`}
+function renderListView(){
+ if(state.view==='Notes'){renderNotesWorkspace();return}
+ if(state.view==='Folders'){
+  const body=state.folders.map(f=>{const count=state.events.filter(e=>e.folderId===f.id).length;return `<div class="folder-card"><div class="nav-icon">▤</div><div class="folder-name">${esc(f.name)}<small>${count} item${count===1?'':'s'}</small></div><button class="mini-button" data-rename-folder="${esc(f.id)}" title="Rename folder">✎</button><button class="mini-button" data-delete-folder="${esc(f.id)}" title="Delete folder">×</button><button class="secondary-button" data-filter-folder="${esc(f.id)}">View items</button></div>`}).join('');
+  $('workspace').innerHTML=`<div class="page-heading"><div><h1>Subject folders</h1><p>Group tasks by class, subject, project, or semester.</p></div><div class="heading-actions"><button class="primary-button" id="create-folder">＋ New folder</button></div></div><div class="entry-list">${body||emptyState('No subject folders yet','Create folders such as Research Methods, Finance, or Marketing.')}</div>`;return;
+ }
+ let list=filteredEvents();
+ const config={Tasks:{title:'To-do lists',description:'Every open task, with one-tap completion and editing.',button:'＋ Add task',kind:'task',emptyTitle:'No open tasks',emptyText:'Create a to-do or use the + on any calendar date.'},Checklist:{title:'Checklists',description:'Break a task into small steps and mark each step complete.',button:'＋ New checklist',kind:'checklist',emptyTitle:'No open checklists',emptyText:'Create a checklist and add one item per line.'},Meetings:{title:'Meetings',description:'Your upcoming meetings in one place.',button:'＋ Add meeting',kind:'meeting',emptyTitle:'No upcoming meetings',emptyText:'Add a meeting here or mark any calendar item as a meeting.'},Notes:{title:'Notes',description:'Standalone notes, ideas, links, and information saved with your planner.',button:'＋ Add note',kind:'note',emptyTitle:'No notes yet',emptyText:'Create a note to keep important information easy to find.'},Completed:{title:'Completed',description:'Items marked DONE. You can reopen any item.',button:'＋ Add task',kind:'task',emptyTitle:'Nothing completed yet',emptyText:'Mark a task, schedule, or meeting DONE to see it here.'}};
+ const c=config[state.view]||config.Tasks;
+ const content=list.length?`<div class="entry-list">${list.map(entryRow).join('')}</div>`:emptyState(c.emptyTitle,c.emptyText);
+ $('workspace').innerHTML=`<div class="page-heading"><div><h1>${c.title}</h1><p>${c.description}</p></div><div class="heading-actions"><button class="primary-button" data-new-event="${c.kind}">${c.button}</button></div></div>${state.folderFilter!=='all'?`<p class="folder-filter">Filtered to ${esc(state.folders.find(f=>f.id===state.folderFilter)?.name||'folder')} · <button class="text-button" id="clear-folder-filter">Clear filter</button></p>`:''}${content}`;
+}
+
+function noteModifiedLabel(item){const d=new Date(item.updatedAt||item.createdAt||Date.now());return Number.isNaN(d.getTime())?'':d.toLocaleString(undefined,{month:'short',day:'numeric',hour:'numeric',minute:'2-digit'})}
+function noteCardMarkup(item){const title=(item.title||'').trim()||'Untitled Note';const preview=(item.notes||'').trim().replace(/\s+/g,' ');return `<button type="button" class="note-card ${state.selectedNoteId===item.id?'active':''}" data-note-select="${esc(item.id)}" data-note-card="${esc(item.id)}"><span class="note-card-top"><strong class="note-card-title">${esc(title)}</strong>${item.isPinned?'<span class="note-pin" title="Pinned">⌑</span>':''}</span><span class="note-card-preview">${esc(preview||'No additional text')}</span><span class="note-card-date">${esc(noteModifiedLabel(item))}</span></button>`}
+function renderNotesWorkspace(){
+ const all=state.events.filter(e=>e.kind==='note'&&!e.done).sort((a,b)=>Number(!!b.isPinned)-Number(!!a.isPinned)||String(b.updatedAt||b.createdAt||'').localeCompare(String(a.updatedAt||a.createdAt||'')));
+ const q=String(state.noteSearch||'').trim().toLowerCase();const list=all.filter(item=>!q||`${item.title||''} ${item.notes||''}`.toLowerCase().includes(q));
+ let selected=list.find(item=>item.id===state.selectedNoteId)||list[0]||null;
+ if(selected)state.selectedNoteId=selected.id;else if(!all.length)state.selectedNoteId=null;
+ const editor=selected?`<div class="note-editor-toolbar"><button type="button" class="secondary-button notes-mobile-back" data-notes-back>‹ All notes</button><span class="note-editor-date">${selected.createdAt?'Created '+esc(noteModifiedLabel({createdAt:selected.createdAt})):''}${selected.updatedAt?' · Edited '+esc(noteModifiedLabel(selected)):''}</span><span class="spacer"></span><button type="button" class="mini-button note-pin-button" data-note-pin="${esc(selected.id)}" title="${selected.isPinned?'Unpin note':'Pin note'}" aria-label="${selected.isPinned?'Unpin note':'Pin note'}">${selected.isPinned?'◆':'◇'}</button><button type="button" class="mini-button" data-note-delete="${esc(selected.id)}" title="Delete note" aria-label="Delete note">×</button></div><input id="note-editor-title" class="note-editor-title" value="${esc(selected.title||'')}" maxlength="180" placeholder="Title" aria-label="Note title"><textarea id="note-editor-body" class="note-editor-body" maxlength="50000" placeholder="Start writing…
+
+Your notes save automatically." aria-label="Note contents">${esc(selected.notes||'')}</textarea><div class="note-editor-footer"><span id="notes-save-status">Auto-saves as you type</span><span>${(selected.notes||'').length.toLocaleString()} characters</span></div>`:`<div class="notes-empty-editor"><div class="notes-empty-icon">▤</div><strong>${all.length?'No matching notes':'Your notes, all in one place'}</strong><p>${all.length?'Try a different search.':'Create a note for ideas, class notes, meeting minutes, or anything you want to remember.'}</p>${!all.length?'<button class="primary-button" type="button" id="notes-new-empty">＋ Create your first note</button>':''}</div>`;
+ $('workspace').classList.toggle('notes-mobile-editor',!!(selected&&state.noteMobileEditor));
+ $('workspace').innerHTML=`<div class="page-heading notes-page-heading"><div><h1>Notes</h1><p>A quiet place for ideas, class notes, meeting minutes, and links.</p></div><div class="heading-actions"><button class="primary-button" type="button" id="notes-new">＋ New note</button></div></div><section class="notes-shell"><aside class="notes-list-panel"><div class="notes-list-toolbar"><label class="notes-search-wrap"><span>⌕</span><input id="notes-search" type="search" value="${esc(state.noteSearch)}" placeholder="Search notes" aria-label="Search notes"></label><button class="mini-button" type="button" id="notes-new-list" title="New note" aria-label="New note">＋</button></div><div class="notes-list" id="notes-list">${list.map(noteCardMarkup).join('')||`<div class="notes-list-empty">${all.length?'No notes match your search.':'No notes yet.'}</div>`}</div><div class="notes-list-footer">${list.length} note${list.length===1?'':'s'}${all.some(n=>n.isPinned)?' · pinned notes first':''}</div></aside><section class="notes-editor" aria-label="Note editor">${editor}</section></section>`;
+ const search=$('notes-search');search?.addEventListener('input',e=>{state.noteSearch=e.target.value;const caret=e.target.selectionStart;renderNotesWorkspace();const next=$('notes-search');if(next){next.focus();try{next.setSelectionRange(caret,caret)}catch(_){}}});
+ $('notes-new')?.addEventListener('click',createQuickNote);$('notes-new-list')?.addEventListener('click',createQuickNote);$('notes-new-empty')?.addEventListener('click',createQuickNote);
+ $('note-editor-title')?.addEventListener('input',e=>updateNoteDraft('title',e.target.value));$('note-editor-body')?.addEventListener('input',e=>updateNoteDraft('notes',e.target.value));
+ $('note-editor-title')?.addEventListener('blur',()=>{flushNoteAutosave();setTimeout(()=>{if(state.view==='Notes'&&!['note-editor-title','note-editor-body'].includes(document.activeElement?.id))renderWorkspace()},120)});$('note-editor-body')?.addEventListener('blur',()=>{flushNoteAutosave();setTimeout(()=>{if(state.view==='Notes'&&!['note-editor-title','note-editor-body'].includes(document.activeElement?.id))renderWorkspace()},120)});
+}
+function updateNoteDraft(field,value){const id=state.selectedNoteId;if(!id)return;const item=state.events.find(e=>e.id===id&&e.kind==='note');if(!item)return;state.events=state.events.map(e=>e.id===id?{...e,[field]:value,updatedAt:new Date().toISOString()}:e);localMutationRevision++;dirtyLocalRecords.add('events:'+id);clearTimeout(state.noteLocalSaveTimer);state.noteLocalSaveTimer=setTimeout(()=>cacheLocalData(),140);clearTimeout(state.noteSaveTimer?.timer);state.noteSaveTimer={id,timer:setTimeout(()=>persistNoteDraft(id),650)};const status=$('notes-save-status');if(status)status.textContent='Saving changes…';const card=[...document.querySelectorAll('[data-note-card]')].find(el=>el.dataset.noteCard===id);if(card){const title=card.querySelector('.note-card-title'),preview=card.querySelector('.note-card-preview');if(title)title.textContent=(field==='title'?value:item.title).trim()||'Untitled Note';if(preview)preview.textContent=String(field==='notes'?value:item.notes||'').trim().replace(/\s+/g,' ')||'No additional text'}}
+function persistNoteDraft(id){if(state.noteSaveTimer?.id===id){clearTimeout(state.noteSaveTimer.timer);state.noteSaveTimer=null}const item=state.events.find(e=>e.id===id&&e.kind==='note');if(!item||!state.user)return;clearTimeout(state.noteLocalSaveTimer);state.noteLocalSaveTimer=null;cacheLocalData();saveLocalRecord('events',id,'update',{title:String(item.title||''),notes:String(item.notes||''),isPinned:!!item.isPinned,updatedAt:new Date().toISOString()});if(state.selectedNoteId===id){const node=$('notes-save-status');if(node)node.textContent='Saved to Firebase';}}
+function flushNoteAutosave(){if(state.noteSaveTimer){const id=state.noteSaveTimer.id;clearTimeout(state.noteSaveTimer.timer);state.noteSaveTimer=null;persistNoteDraft(id)}if(state.noteLocalSaveTimer){clearTimeout(state.noteLocalSaveTimer);state.noteLocalSaveTimer=null;cacheLocalData()}}
+function createQuickNote(){flushNoteAutosave();if(!state.user){notify('Sign in before creating a note.');return}const now=new Date().toISOString(),id=uid(),item={id,title:'',date:toDateKey(new Date()),kind:'note',checklistItems:[],startTime:'',endTime:'',isMeeting:false,isPinned:false,priority:'normal',category:'Personal',folderId:'',notes:'',done:false,completedAt:null,attachments:[],createdAt:now,updatedAt:now};state.selectedNoteId=id;state.noteSearch='';state.noteMobileEditor=true;saveLocalRecord('events',id,'set',item);notify('New note created and syncing to Firebase.');renderWorkspace();renderDetails();setTimeout(()=>{$('note-editor-title')?.focus()},0)}
+function toggleNotePin(id){flushNoteAutosave();const item=state.events.find(e=>e.id===id&&e.kind==='note');if(!item)return;saveLocalRecord('events',id,'update',{isPinned:!item.isPinned,updatedAt:new Date().toISOString()});renderWorkspace();renderDetails();notify(item.isPinned?'Note unpinned':'Note pinned')}
+function renderWorkspace(){if(!state.user)return;const ws=$('workspace');const active=ws.contains(document.activeElement)?document.activeElement:null;const preserveId=active&&['note-editor-title','note-editor-body','notes-search'].includes(active.id)?active.id:null;const start=preserveId&&typeof active.selectionStart==='number'?active.selectionStart:null;const end=preserveId&&typeof active.selectionEnd==='number'?active.selectionEnd:null;renderSidebar();if(state.view==='Calendar')renderCalendar();else renderListView();ws.classList.remove('view-calendar-scale','view-large-scale');ws.classList.toggle('notes-mobile-editor',state.view==='Notes'&&state.noteMobileEditor);document.querySelectorAll('[data-view]').forEach(b=>b.classList.toggle('active',b.dataset.view===state.view));$('layout').classList.toggle('sidebar-collapsed',state.sidebarCollapsed);$('layout').classList.toggle('details-hidden',!state.detailsVisible);if(preserveId){const next=$(preserveId);if(next){next.focus({preventScroll:true});if(start!==null&&typeof next.setSelectionRange==='function')try{next.setSelectionRange(start,end)}catch(_){}}}}
+function renderSidebar(){if(!state.user)return;const target=$('folder-shortcuts');target.innerHTML=state.folders.map(f=>`<button class="folder-shortcut ${state.folderFilter===f.id?'active':''}" data-folder-shortcut="${esc(f.id)}" title="${esc(f.name)}">▤ ${esc(f.name)}</button>`).join('');}
+function renderDetails(){if(!state.user)return;const entries=sortedEvents().filter(e=>e.date===state.selected);$('details').innerHTML=`<div class="details-heading"><div><h2>${esc(dateLabel(state.selected,{weekday:'long',month:'long',day:'numeric'}))}</h2><div class="details-date">${entries.length} item${entries.length===1?'':'s'} planned</div></div><button type="button" class="icon-button details-close" data-close-details aria-label="Hide date details" title="Hide details">×</button></div><button class="primary-button details-add" data-new-event="task" data-event-date="${esc(state.selected)}">＋ Add to this day</button>${entries.length?entries.map(e=>`<div class="details-entry"><button type="button" class="entry-title entry-title-button ${e.done?'done':''}" data-edit-event="${esc(e.id)}">${esc(e.title)}</button><div class="entry-meta">${esc(timeRange(e))} · ${esc(eventLabel(e))}</div><div class="entry-actions" style="margin-top:7px"><button class="mini-button" data-toggle-done="${esc(e.id)}" title="${e.done?'Reopen':'Mark done'}">${e.done?'↶':'✓'}</button><button class="mini-button" data-edit-event="${esc(e.id)}" title="Edit">✎</button><button class="mini-button" data-delete-event="${esc(e.id)}" title="Delete">×</button></div></div>`).join(''):'<div class="detail-empty">Nothing scheduled yet.<br>Keep this space open or add an item.</div>'}<div class="priority-legend"><span><i class="red"></i>Urgent</span><span><i class="orange"></i>High</span><span><i></i>Normal</span><span><i class="green"></i>Low</span></div>`;}
+function navigateCalendar(step){if(state.mode==='Month')state.anchor=new Date(state.anchor.getFullYear(),state.anchor.getMonth()+step,1,12);else if(state.mode==='Week'||state.mode==='Agenda'){const d=fromDateKey(state.selected);d.setDate(d.getDate()+step*(state.mode==='Agenda'?14:7));state.selected=toDateKey(d);state.anchor=d}else{const d=fromDateKey(state.selected);d.setDate(d.getDate()+step);state.selected=toDateKey(d);state.anchor=d}renderWorkspace();renderDetails()}
+function normalizeTime(raw){let s=String(raw||'').trim().toUpperCase().replace(/\s+/g,'');if(!s)return '';const ampm=s.match(/(AM|PM)$/);if(ampm)s=s.slice(0,-2);let h,m;if(s.includes(':')){const parts=s.split(':');if(parts.length!==2||!/^\d{1,2}$/.test(parts[0])||!/^\d{1,2}$/.test(parts[1]))throw Error('Enter a time like 9:30 AM or 14:30.');h=+parts[0];m=+parts[1]}else if(/^\d{3,4}$/.test(s)){h=+s.slice(0,-2);m=+s.slice(-2)}else if(/^\d{1,2}$/.test(s)){h=+s;m=0}else throw Error('Enter a time like 9:30 AM, 14:30, 930, or 1430.');if(m>59)throw Error('Minutes must be between 00 and 59.');if(ampm){if(h<1||h>12)throw Error('For AM/PM times, the hour must be from 1 to 12.');if(ampm[1]==='AM'){if(h===12)h=0}else if(h!==12)h+=12}else if(h<0||h>23)throw Error('Hours must be between 0 and 23.');return `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}`}
+function addEvent(date=state.selected,kind='task',entry=null){const meetingPreset=kind==='meeting';if(meetingPreset)kind='schedule';state.editing=entry?{...entry}:(meetingPreset?{isMeeting:true}:null);state.editAttachments=entry?(entry.attachments||[]).map(a=>({...a})):[];state.pendingFiles=[];renderEventModal(date,kind)}
+function renderEventModal(date,kind){const e=state.editing||{};const id=e.id||'';const checklistText=(e.checklistItems||[]).map(item=>`${item.done?'[x]':'[ ]'} ${item.text}`).join('\n');const resolvedKind=e.kind||kind;const html=`<div class="modal-backdrop" id="event-backdrop"><section class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title"><div class="modal-head"><h2 id="modal-title">${id?'Edit item':'Add to your planner'}</h2><button class="icon-button" type="button" data-close-modal aria-label="Close">×</button></div><form id="event-form" class="modal-body"><div class="form-grid"><label class="field-label field-full">Title<input class="input" name="title" id="event-title" required maxlength="120" placeholder="e.g. Prepare research presentation" value="${esc(e.title||'')}"></label><label class="field-label">Date<input class="input" name="date" type="date" required value="${esc(e.date||date)}"></label><label class="field-label">Due-date reminder<select class="select" name="reminderMinutes"><option value="" ${e.reminderMinutes==null?'selected':''}>No reminder</option><option value="0" ${String(e.reminderMinutes)==='0'?'selected':''}>At due time</option><option value="10" ${String(e.reminderMinutes)==='10'?'selected':''}>10 minutes before</option><option value="60" ${String(e.reminderMinutes)==='60'?'selected':''}>1 hour before</option><option value="1440" ${String(e.reminderMinutes)==='1440'?'selected':''}>1 day before</option></select><small class="field-help">Browser notification must be allowed. Reminders work while Dayframe is open.</small></label><label class="field-label">Item type<select class="select" name="kind"><option value="task" ${(e.kind||kind)==='task'?'selected':''}>Task · flexible to-do</option><option value="checklist" ${(e.kind||kind)==='checklist'?'selected':''}>Checklist · steps with checkboxes</option><option value="schedule" ${(e.kind||kind)==='schedule'?'selected':''}>Schedule · time block</option><option value="note" ${(e.kind||kind)==='note'?'selected':''}>Note · ideas and information</option></select><small class="field-help">Tasks are to-dos. Schedules reserve time. Notes store information.</small></label><label class="field-label">Start time<input class="input" id="event-start" name="startTime" placeholder="e.g. 9:30 AM or 1430" value="${esc(e.startTime||'')}"><small class="field-help">Type it yourself. Saved as 24-hour time.</small></label><label class="field-label">End time<input class="input" id="event-end" name="endTime" placeholder="e.g. 11:00 AM or 1500" value="${esc(e.endTime||'')}"></label><label class="field-label">Urgency<select class="select" name="priority"><option value="urgent" ${(e.priority||'normal')==='urgent'?'selected':''}>🔴 Urgent</option><option value="high" ${e.priority==='high'?'selected':''}>🟠 High</option><option value="normal" ${(e.priority||'normal')==='normal'?'selected':''}>🔵 Normal</option><option value="low" ${e.priority==='low'?'selected':''}>🟢 Low</option></select><small class="field-help">Urgency affects the event's color.</small></label><label class="field-label">Category<input class="input" name="category" value="${esc(e.category||'Personal')}" placeholder="Study, Work, Personal"></label><label class="field-label field-full">Subject folder<select class="select" name="folderId"><option value="">No folder</option>${state.folders.map(f=>`<option value="${esc(f.id)}" ${e.folderId===f.id?'selected':''}>${esc(f.name)}</option>`).join('')}</select></label><label class="field-label field-full">Notes<textarea class="textarea" name="notes" maxlength="1500" placeholder="Details, links, or reminders...">${esc(e.notes||'')}</textarea></label><label class="field-label field-full ${resolvedKind==='checklist'?'':'hidden'}" id="checklist-field">Checklist items <span class="quiet">(one per line, up to 100)</span><textarea class="textarea" name="checklistItems" id="event-checklist-items" rows="5" maxlength="6000" placeholder="[ ] Gather materials&#10;[ ] Complete first draft&#10;[ ] Review">${esc(checklistText)}</textarea><small class="field-help">Use [x] for completed items and [ ] for items still to do.</small></label></div><label class="inline-field"><input type="checkbox" name="isMeeting" ${e.isMeeting||kind==='meeting'?'checked':''}> <span><strong>Mark as a meeting</strong><br><span class="quiet small">When enabled, this item is labeled Meeting across the calendar.</span></span></label><label class="inline-field"><input type="checkbox" name="done" ${e.done?'checked':''}> <span><strong>Already DONE</strong><br><span class="quiet small">Completed items appear under the Completed menu. You can reopen them later.</span></span></label><div><label class="field-label">Attachments <span class="quiet">(up to 5 files)</span><span class="attachment-drop">Images are resized and compressed (WebP when supported); documents must be 10 MB or smaller.<input id="event-files" type="file" accept="image/*,.pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx,.csv,.txt,.zip" multiple></span></label><div id="attachments-list" class="attachment-list"></div></div><div id="modal-error" class="auth-error hidden" role="alert"></div><div class="modal-footer"><button class="text-button" type="button" data-close-modal>Cancel</button><span class="spacer"></span>${id?'<button type="button" class="danger-button" id="delete-from-modal">Delete item</button>':''}<button class="primary-button" type="submit">${id?'Save changes':'Add item'}</button></div></form></section></div>`;$('modal-root').innerHTML=html;renderAttachmentList();$('event-files').addEventListener('change',e=>{const files=[...e.target.files];const remain=5-state.editAttachments.length-state.pendingFiles.length;if(files.length>remain){showModalError('You can attach up to 5 files per item.');}files.slice(0,Math.max(0,remain)).forEach(f=>{if((uploadType(f).startsWith('image/')&&f.size>30*1024*1024)||(!uploadType(f).startsWith('image/')&&f.size>10*1024*1024)){showModalError(`${f.name} is too large. Choose an image under 30 MB or a document under 10 MB.`);return}if(!isAllowedUpload(f)){showModalError(`${f.name} is not a supported type. Use an image, PDF, Office document, CSV, TXT, or ZIP.`);return}state.pendingFiles.push({id:'p-'+uid(),file:f})});e.target.value='';renderAttachmentList()});$('event-form').addEventListener('submit',saveEvent);$('event-form').querySelector('[name="kind"]').addEventListener('change',e=>{$('checklist-field').classList.toggle('hidden',e.target.value!=='checklist')});$('event-start').addEventListener('blur',e=>normalizeTimeField(e.target));$('event-end').addEventListener('blur',e=>normalizeTimeField(e.target));$('event-title').focus()}
+function normalizeTimeField(input){try{if(input.value.trim())input.value=normalizeTime(input.value);input.setCustomValidity('')}catch(e){input.setCustomValidity(e.message);input.reportValidity()}}
+function showModalError(m){const el=$('modal-error');if(el){el.textContent=m;el.classList.remove('hidden')}}
+function renderAttachmentList(){const root=$('attachments-list');if(!root)return;const existing=state.editAttachments.map(a=>`<div class="attachment-item"><span>📎 ${esc(a.name)}<small>${Math.max(1,Math.round((a.size||0)/1024))} KB · ${a.storagePath?'stored in Firebase Storage':a.localKey?'stored on this device':'metadata only'}</small></span>${a.localKey||a.storagePath?`<button class="secondary-button" type="button" data-open-attachment="${esc(a.id)}">Open</button>`:''}<button class="mini-button" type="button" data-remove-saved-attachment="${esc(a.id)}" title="Remove attachment">×</button></div>`).join('');const pending=state.pendingFiles.map(a=>`<div class="attachment-item"><span>📎 ${esc(a.file.name)}<small>${Math.max(1,Math.round(a.file.size/1024))} KB · waiting to upload to Firebase</small></span><button class="mini-button" type="button" data-remove-pending="${esc(a.id)}" title="Remove attachment">×</button></div>`).join('');root.innerHTML=existing+pending}
+async function openLocalAttachment(attachmentId){
+ const attachment=[...state.editAttachments,...state.events.flatMap(e=>e.attachments||[])].find(a=>a.id===attachmentId);if(!attachment||(!attachment.localKey&&!attachment.storagePath)){notify('This attachment is not available.');return}
+ let target=null;try{target=window.open('about:blank','_blank')}catch(_){}
+ try{
+  if(attachment.localKey){
+   try{const value=await idbGet(attachment.localKey);const blob=value instanceof Blob?value:(value?.blob instanceof Blob?value.blob:null);if(blob){const url=URL.createObjectURL(blob);localObjectUrls.add(url);if(target)target.location.href=url;else{const link=document.createElement('a');link.href=url;link.target='_blank';link.rel='noopener';link.click()}setTimeout(()=>{URL.revokeObjectURL(url);localObjectUrls.delete(url)},60000);return}if(typeof value==='string'&&value.startsWith('data:')&&target){target.location.href=value;return}}catch(_){}
+  }
+  if(attachment.storagePath){const url=await getDownloadURL(storageRef(firebaseStorage,attachment.storagePath));if(target)target.location.href=url;else window.open(url,'_blank','noopener');return}
+  throw new Error('The attachment file could not be found in this browser or Firebase Storage.');
+ }catch(err){try{target?.close()}catch(_){}notify(friendlyFirebaseError(err))}
+}
+async function compressImage(file,maxDim=1600,quality=.78,maxBytes=9.2*1024*1024){
+ if(!looksLikeImage(file))return file;
+ file=await makeBrowserDecodableImage(file);
+ let source=null,width=0,height=0,cleanup=()=>{};
+ try{
+  if(typeof createImageBitmap==='function'){
+   try{source=await createImageBitmap(file);width=source.width;height=source.height;cleanup=()=>source?.close?.()}catch(_){source=null}
+  }
+  if(!source){
+   const url=URL.createObjectURL(file);
+   try{source=await new Promise((resolve,reject)=>{const img=new Image();img.onload=()=>resolve(img);img.onerror=()=>reject(new Error('This image format cannot be decoded. Try a JPG, PNG, or WebP image.'));img.src=url});width=source.naturalWidth;height=source.naturalHeight;cleanup=()=>URL.revokeObjectURL(url)}catch(err){URL.revokeObjectURL(url);throw err}
+  }
+  if(!width||!height)throw new Error('Could not read the image dimensions. Try a JPG, PNG, or WebP image.');
+  let scale=Math.min(1,maxDim/Math.max(width,height)),q=quality,blob=null;
+  for(let attempt=0;attempt<8;attempt++){
+   const canvas=document.createElement('canvas');canvas.width=Math.max(1,Math.round(width*scale));canvas.height=Math.max(1,Math.round(height*scale));
+   const ctx=canvas.getContext('2d',{alpha:false});if(!ctx)throw new Error('Image compression is unavailable in this browser.');
+   ctx.fillStyle='#ffffff';ctx.fillRect(0,0,canvas.width,canvas.height);ctx.drawImage(source,0,0,canvas.width,canvas.height);
+   blob=await new Promise(resolve=>canvas.toBlob(resolve,'image/webp',q));
+   if(!blob)blob=await new Promise(resolve=>canvas.toBlob(resolve,'image/jpeg',q));
+   if(!blob)throw new Error('The browser could not compress this image. Try JPG or PNG.');
+   if(blob.size<=maxBytes)break;
+   if(q>.5)q=Math.max(.48,q-.1);else scale*=.82;
+  }
+  if(blob.size>maxBytes)throw new Error(`Image is still too large after compression (${Math.ceil(blob.size/1024)} KB). Choose a smaller image.`);
+  const type=blob.type==='image/webp'?'image/webp':blob.type==='image/png'?'image/png':'image/jpeg';
+  const ext=type==='image/webp'?'webp':type==='image/png'?'png':'jpg';
+  const base=file.name.replace(/\.[^.]+$/,'')||'image';
+  return new File([blob],`${base}.${ext}`,{type,lastModified:Date.now()});
+ }finally{cleanup()}
+}
+function uploadType(file){if(file.type&&file.type!=='application/octet-stream')return file.type;const ext=(file.name.split('.').pop()||'').toLowerCase();return ({png:'image/png',jpg:'image/jpeg',jpeg:'image/jpeg',gif:'image/gif',webp:'image/webp',avif:'image/avif',heic:'image/heic',heif:'image/heif',pdf:'application/pdf',doc:'application/msword',docx:'application/vnd.openxmlformats-officedocument.wordprocessingml.document',ppt:'application/vnd.ms-powerpoint',pptx:'application/vnd.openxmlformats-officedocument.presentationml.presentation',xls:'application/vnd.ms-excel',xlsx:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',csv:'text/csv',txt:'text/plain',zip:'application/zip'})[ext]||'application/octet-stream'}
+function isAllowedUpload(file){const type=uploadType(file);return type.startsWith('image/')||['application/pdf','application/msword','application/vnd.openxmlformats-officedocument.wordprocessingml.document','application/vnd.ms-powerpoint','application/vnd.openxmlformats-officedocument.presentationml.presentation','application/vnd.ms-excel','application/vnd.openxmlformats-officedocument.spreadsheetml.sheet','text/plain','text/csv','application/zip','application/x-zip-compressed'].includes(type)}
+function parseChecklistText(raw){return String(raw||'').split(/\r?\n/).map(line=>{let text=line.trim();if(!text)return null;const match=text.match(/^\s*(?:[-*]\s*)?\[([ xX])\]\s*/);const done=Boolean(match&&match[1].toLowerCase()==='x');if(match)text=text.slice(match[0].length).trim();else text=text.replace(/^[-*]\s*/,'').trim();return text?{id:uid(),text,done}:null}).filter(Boolean).slice(0,100)}
+function toggleChecklistItem(id,index){const entry=state.events.find(item=>item.id===id);if(!entry||entry.kind!=='checklist')return;const checklistItems=(entry.checklistItems||[]).map((item,i)=>i===Number(index)?{...item,done:!item.done}:item);if(!checklistItems[Number(index)])return;const updatedAt=new Date().toISOString();saveLocalRecord('events',id,'update',{checklistItems,updatedAt});renderWorkspace();renderDetails()}
+function saveEvent(ev){
+ ev.preventDefault();const form=ev.currentTarget,fd=new FormData(form);let start,end;try{start=normalizeTime(fd.get('startTime'));end=normalizeTime(fd.get('endTime'));if(start&&end&&end<start)throw Error('End time must be later than start time.')}catch(e){showModalError(e.message);return}
+ const title=String(fd.get('title')||'').trim();if(!title){showModalError('Enter a title.');return}if(!state.user){showModalError('You are signed out. Sign in again before saving.');return}
+ const editSnapshot=state.editing?{...state.editing}:null;const id=editSnapshot?.id||uid();const pending=[...state.pendingFiles],attachments=[...state.editAttachments];const done=fd.get('done')==='on',kind=String(fd.get('kind')||'task'),checklistItems=kind==='checklist'?parseChecklistText(fd.get('checklistItems')):[];const reminderRaw=String(fd.get('reminderMinutes')??''),reminderMinutes=reminderRaw===''?null:Number(reminderRaw);if(reminderMinutes!==null&&![0,10,60,1440].includes(reminderMinutes)){showModalError('Choose a supported reminder time.');return}if(reminderMinutes!==null&&(!('Notification' in window))){showModalError('This browser does not support notifications.');return}
+ const payload={id,title,date:String(fd.get('date')),kind,checklistItems,startTime:start,endTime:end,reminderMinutes,isMeeting:fd.get('isMeeting')==='on',priority:String(fd.get('priority')||'normal'),category:String(fd.get('category')||'Personal').trim(),folderId:String(fd.get('folderId')||''),notes:String(fd.get('notes')||'').trim(),done,completedAt:done?(editSnapshot?.completedAt||new Date().toISOString()):null,attachments,createdAt:editSnapshot?.createdAt||new Date().toISOString(),updatedAt:new Date().toISOString()};
+ const retained=new Set(attachments.map(a=>a.id));for(const old of editSnapshot?.attachments||[]){if(old.localKey&&!retained.has(old.id))idbDelete(old.localKey).catch(()=>{});if(old.storagePath&&!retained.has(old.id))deleteObject(storageRef(firebaseStorage,old.storagePath)).catch(err=>console.warn('Firebase attachment cleanup failed',err));}
+ state.selected=payload.date;state.anchor=fromDateKey(payload.date);state.editing=null;state.pendingFiles=[];state.editAttachments=[];$('modal-root').innerHTML='';saveLocalRecord('events',id,'set',payload);renderWorkspace();renderDetails();
+ if(pending.length){notify(`Saved planner item. Uploading ${pending.length} attachment${pending.length===1?'':'s'} to Firebase…`);void saveAttachmentsLocally({userId:state.user.uid,id,pending})}else notify('Saved and syncing to Firebase.');
+}
+async function saveAttachmentsLocally({userId,id,pending}){
+ const saved=[],failed=[];updateSyncStatus('Uploading attachments to Firebase…','busy');
+ await Promise.all(pending.map(async item=>{try{
+  if(!state.user||state.user.uid!==userId)throw new Error('Your sign-in session changed before this file was uploaded.');
+  let file=item.file;if(uploadType(file).startsWith('image/'))file=await compressImage(file,1600,.78,9.2*1024*1024);
+  if(file.size>10*1024*1024)throw new Error(`${file.name} exceeds the 10 MB file limit after compression.`);
+  const attachmentId=uid(),localKey=`dayframe-attachment-v1-${userId}-${attachmentId}`,safeName=String(file.name||'file').replace(/[^a-zA-Z0-9._-]+/g,'_').slice(0,100),path=`users/${userId}/attachments/${attachmentId}_${safeName}`;
+  await uploadBytes(storageRef(firebaseStorage,path),file,{contentType:uploadType(file)});
+  try{await idbPut(localKey,file)}catch(cacheError){console.warn('Local attachment cache unavailable; the cloud copy is saved.',cacheError)}
+  saved.push({id:attachmentId,name:file.name,size:file.size,type:uploadType(file),localKey,storagePath:path});
+ }catch(err){failed.push({name:item.file.name,error:err});console.warn('Could not upload attachment to Firebase Storage.',err)}}));
+ const existing=state.events.find(e=>e.id===id);if(!existing||!state.user||state.user.uid!==userId){updateSyncStatus('Connected to Firebase','ok');return}
+ if(saved.length){const merged=[...(existing.attachments||[]),...saved];saveLocalRecord('events',id,'update',{attachments:merged,updatedAt:new Date().toISOString()});}
+ renderWorkspace();renderDetails();
+ if(failed.length)notify(`${saved.length} attachment(s) uploaded to Firebase; ${failed.length} failed. ${failed.map(f=>f.name+': '+friendlyFirebaseError(f.error)).join('; ')}`);else notify(`Item and ${saved.length} attachment(s) saved to Firebase.`)
+}
+async function deleteEvent(id){const e=state.events.find(x=>x.id===id);if(!e||!confirm(`Delete “${e.title}”? This cannot be undone.`))return;for(const a of e.attachments||[]){if(a.localKey)idbDelete(a.localKey).catch(()=>{});if(a.storagePath)deleteObject(storageRef(firebaseStorage,a.storagePath)).catch(err=>console.warn('Firebase attachment cleanup failed',err));}saveLocalRecord('events',id,'delete');$('modal-root').innerHTML='';state.editing=null;state.editAttachments=[];state.pendingFiles=[];notify('Item removed.');renderWorkspace();renderDetails()}
+async function toggleDone(id){const e=state.events.find(x=>x.id===id);if(!e)return;const done=!e.done;saveLocalRecord('events',id,'update',{done,completedAt:done?new Date().toISOString():null,updatedAt:new Date().toISOString()});notify(done?'Marked DONE':'Item reopened');renderWorkspace();renderDetails()}
+async function createFolder(){const name=prompt('Subject folder name (e.g. Research Methods):');if(!name||!name.trim())return;const id=uid();saveLocalRecord('folders',id,'set',{name:name.trim(),createdAt:new Date().toISOString()});notify('Folder created.');renderSidebar();renderWorkspace()}
+async function renameFolder(id){const f=state.folders.find(x=>x.id===id);if(!f)return;const name=prompt('Rename subject folder:',f.name);if(!name||!name.trim())return;saveLocalRecord('folders',id,'update',{name:name.trim()});notify('Folder renamed.');renderSidebar();renderWorkspace()}
+async function deleteFolder(id){const f=state.folders.find(x=>x.id===id);if(!f||!confirm(`Delete folder “${f.name}”? Tasks inside it will be preserved and moved to No folder.`))return;for(const event of state.events.filter(e=>e.folderId===id))saveLocalRecord('events',event.id,'update',{folderId:'',updatedAt:new Date().toISOString()});saveLocalRecord('folders',id,'delete');if(state.folderFilter===id)state.folderFilter='all';notify('Folder deleted; items preserved.');renderSidebar();renderWorkspace();renderDetails()}
+function selectView(view){if(state.view==='Notes'&&view!=='Notes'){flushNoteAutosave();if(state.detailsBeforeNotes!==null){state.detailsVisible=state.detailsBeforeNotes;state.detailsBeforeNotes=null}}if(view==='Notes'&&state.view!=='Notes'){state.noteMobileEditor=false;state.detailsBeforeNotes=state.detailsVisible;state.detailsVisible=false}state.view=view;state.folderFilter='all';closeMobileMenu();renderWorkspace();renderDetails()}
+function closeMobileMenu(){ $('sidebar').classList.remove('mobile-open');$('mobile-overlay').classList.remove('show') }
+document.addEventListener('click',async e=>{const b=e.target.closest('button');if(!b)return;if(b.hasAttribute('data-note-select')){flushNoteAutosave();state.selectedNoteId=b.dataset.noteSelect;state.noteMobileEditor=true;renderWorkspace();return}if(b.hasAttribute('data-notes-back')){flushNoteAutosave();state.noteMobileEditor=false;renderWorkspace();return}if(b.hasAttribute('data-note-pin')){toggleNotePin(b.dataset.notePin);return}if(b.hasAttribute('data-note-delete')){const id=b.dataset.noteDelete;if(state.selectedNoteId===id){flushNoteAutosave();state.selectedNoteId=null;state.noteMobileEditor=false;}await deleteEvent(id);return}if(b.id==='enable-reminders'){await enableDueReminders();return}if(b.hasAttribute('data-view')){selectView(b.dataset.view);return}if(b.hasAttribute('data-calendar-mode')){state.mode=b.dataset.calendarMode;renderWorkspace();return}if(b.hasAttribute('data-navigate')){navigateCalendar(Number(b.dataset.navigate));return}if(b.hasAttribute('data-today')){state.selected=toDateKey(new Date());state.anchor=new Date();renderWorkspace();renderDetails();return}if(b.hasAttribute('data-new-event')){addEvent(b.dataset.eventDate||state.selected,b.dataset.newEvent);return}if(b.hasAttribute('data-edit-event')){const entry=state.events.find(x=>x.id===b.dataset.editEvent);if(entry)addEvent(entry.date,entry.kind,entry);return}if(b.hasAttribute('data-toggle-done')){await toggleDone(b.dataset.toggleDone);return}if(b.hasAttribute('data-toggle-checklist-item')){toggleChecklistItem(b.dataset.toggleChecklistItem,b.dataset.checklistIndex);return}if(b.hasAttribute('data-delete-event')){await deleteEvent(b.dataset.deleteEvent);return}if(b.hasAttribute('data-select-date')){state.selected=b.dataset.selectDate;if(state.mode!=='Month')state.anchor=fromDateKey(state.selected);renderWorkspace();renderDetails();return}if(b.hasAttribute('data-folder-shortcut')){state.folderFilter=b.dataset.folderShortcut;state.view='Tasks';renderWorkspace();renderDetails();return}if(b.hasAttribute('data-rename-folder')){await renameFolder(b.dataset.renameFolder);return}if(b.hasAttribute('data-delete-folder')){await deleteFolder(b.dataset.deleteFolder);return}if(b.hasAttribute('data-filter-folder')){state.folderFilter=b.dataset.filterFolder;state.view='Tasks';renderWorkspace();renderDetails();return}if(b.id==='create-folder'){await createFolder();return}if(b.id==='clear-folder-filter'){state.folderFilter='all';renderWorkspace();return}if(b.id==='details-toggle'){state.detailsVisible=!state.detailsVisible;renderWorkspace();return}if(b.hasAttribute('data-close-details')){state.detailsVisible=false;renderWorkspace();return}if(b.hasAttribute('data-close-modal')){$('modal-root').innerHTML='';return}if(b.hasAttribute('data-open-attachment')){await openLocalAttachment(b.dataset.openAttachment);return}if(b.hasAttribute('data-remove-saved-attachment')){state.editAttachments=state.editAttachments.filter(a=>a.id!==b.dataset.removeSavedAttachment);renderAttachmentList();return}if(b.hasAttribute('data-remove-pending')){state.pendingFiles=state.pendingFiles.filter(a=>a.id!==b.dataset.removePending);renderAttachmentList();return}if(b.id==='delete-from-modal'){await deleteEvent(state.editing.id);return}});
+document.addEventListener('click',e=>{if(e.target.id==='event-backdrop')$('modal-root').innerHTML=''});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){$('modal-root').innerHTML='';$('background-picker').classList.add('hidden');closeMobileMenu()}if(e.key==='Enter'&&e.target.matches('.day-cell')){state.selected=e.target.dataset.selectDate;if(state.mode!=='Month'||e.target.classList.contains('outside'))state.anchor=fromDateKey(state.selected);renderWorkspace();renderDetails()}});
+$('sidebar-new').addEventListener('click',()=>addEvent(state.selected,'task'));$('sidebar-background').addEventListener('click',()=>{closeMobileMenu();$('background-picker').classList.remove('hidden')});$('user-name').addEventListener('click',async()=>{if(!state.user)return;const next=prompt('Change your display name:',state.user.displayName||userLoginId(state.user)||'');if(!next||!next.trim())return;try{await firebaseUpdateProfile(firebaseAuth.currentUser,{displayName:next.trim()});state.user=firebaseAuth.currentUser;$('user-name').textContent=next.trim();$('avatar-initials').textContent=next.trim().charAt(0).toUpperCase();notify('Display name updated to your Firebase account')}catch(e){notify(friendlyFirebaseError(e))}});$('desktop-collapse').addEventListener('click',()=>{state.sidebarCollapsed=!state.sidebarCollapsed;renderWorkspace()});$('mobile-menu').addEventListener('click',()=>{$('sidebar').classList.add('mobile-open');$('mobile-overlay').classList.add('show')});$('mobile-overlay').addEventListener('click',closeMobileMenu);
+// Event delegation for folder shortcuts and modal controls is shared above.
+// Add a keyboard-friendly selected-date state; cells are clickable/tappable.
+const originalRenderCalendar=renderCalendar;
+// Replace selected-date click behavior for the main calendar (event buttons remain independent).
+$('workspace').addEventListener('click',e=>{const cell=e.target.closest('.day-cell');if(!cell||e.target.closest('button'))return;state.selected=cell.dataset.selectDate;if(state.mode!=='Month'||cell.classList.contains('outside'))state.anchor=fromDateKey(state.selected);renderWorkspace();renderDetails()});
+$('workspace').addEventListener('mouseover',e=>{const cell=e.target.closest('.day-cell');if(cell)cell.setAttribute('aria-expanded','true')});
+$('workspace').addEventListener('mouseout',e=>{const cell=e.target.closest('.day-cell');if(cell)cell.setAttribute('aria-expanded','false')});
+
+// Prevent browser-level pinch and double-tap zoom on touch devices, as requested.
+// Native scrolling and taps remain available; desktop browser zoom is unaffected.
+if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
+  for (const gesture of ['gesturestart','gesturechange','gestureend']) {
+    document.addEventListener(gesture, event => event.preventDefault(), { passive: false });
+  }
+}
+
+function canvasRoundRect(ctx, x, y, w, h, r, fill, stroke) {
+  const radius = Math.max(0, Math.min(r, w/2, h/2));
+  ctx.beginPath();
+  if (typeof ctx.roundRect === 'function') ctx.roundRect(x, y, w, h, radius);
+  else {
+    ctx.moveTo(x+radius,y); ctx.lineTo(x+w-radius,y); ctx.quadraticCurveTo(x+w,y,x+w,y+radius);
+    ctx.lineTo(x+w,y+h-radius); ctx.quadraticCurveTo(x+w,y+h,x+w-radius,y+h);
+    ctx.lineTo(x+radius,y+h); ctx.quadraticCurveTo(x,y+h,x,y+h-radius);
+    ctx.lineTo(x,y+radius); ctx.quadraticCurveTo(x,y,x+radius,y); ctx.closePath();
+  }
+  if (fill) { ctx.fillStyle = fill; ctx.fill(); }
+  if (stroke) { ctx.strokeStyle = stroke; ctx.stroke(); }
+}
+function canvasText(ctx, text, x, y, maxWidth, size=14, color='#28332b', weight=500) {
+  ctx.fillStyle=color;ctx.font=`${weight} ${size}px Inter, system-ui, -apple-system, Segoe UI, sans-serif`;
+  let value=String(text ?? '');
+  while(value.length>1&&ctx.measureText(value).width>maxWidth)value=value.slice(0,-2)+'…';
+  ctx.fillText(value,x,y);
+}
+function calendarExportTitle() {
+  if(state.mode==='Agenda') return `${dateLabel(state.selected,{month:'short',day:'numeric'})} – ${dateLabel(offsetDate(state.selected,13),{month:'short',day:'numeric',year:'numeric'})}`;
+  if(state.mode==='Week') {const cells=calendarCells();return `${dateLabel(cells[0].key,{month:'short',day:'numeric'})} – ${dateLabel(cells[6].key,{month:'short',day:'numeric',year:'numeric'})}`;}
+  return fmtMonth(state.anchor);
+}
+async function exportCalendarAsImage() {
+  const button=$('calendar-export-image');if(button){button.disabled=true;button.textContent='Preparing image…';}
+  try {
+    if(document.fonts?.ready) await document.fonts.ready;
+    const theme=getComputedStyle(document.body);
+    const colors={bg:theme.getPropertyValue('--bg').trim()||'#f4f6f0',panel:theme.getPropertyValue('--panel').trim()||'#fff',panel2:theme.getPropertyValue('--panel2').trim()||'#f8faf6',text:theme.getPropertyValue('--text').trim()||'#28332b',muted:theme.getPropertyValue('--muted').trim()||'#748072',line:theme.getPropertyValue('--line').trim()||'#e4e9e0',accent:theme.getPropertyValue('--accent').trim()||'#63836b',accentDark:theme.getPropertyValue('--accent-dark').trim()||'#456b50',red:theme.getPropertyValue('--red').trim()||'#c54b4b',orange:theme.getPropertyValue('--orange').trim()||'#c17a32',blue:theme.getPropertyValue('--blue').trim()||'#4e7eaf',green:theme.getPropertyValue('--green').trim()||'#4c8058'};
+    const events=sortedEvents().filter(e=>!e.deletedAt);const byDate=new Map();for(const item of events){if(!item.date)continue;const bucket=byDate.get(item.date);if(bucket)bucket.push(item);else byDate.set(item.date,[item]);}
+    const logicalW=1600,scale=2,margin=58,headTop=50,headerH=148,gridTop=headTop+headerH,cellW=(logicalW-margin*2)/7;
+    let cells=[],rows=0,cellH=145,canvasH=0;
+    if(state.mode==='Agenda'){canvasH=150+14*78+95;}
+    else {cells=calendarCells();rows=cells.length/7;cellH=state.mode==='Week'?285:145;canvasH=gridTop+rows*cellH+112;}
+    const canvas=document.createElement('canvas');canvas.width=logicalW*scale;canvas.height=Math.ceil(canvasH)*scale;const ctx=canvas.getContext('2d');if(!ctx)throw new Error('Image export is not available in this browser.');ctx.scale(scale,scale);ctx.fillStyle=colors.bg;ctx.fillRect(0,0,logicalW,canvasH);
+    canvasRoundRect(ctx,margin,28,48,48,13,colors.accent);
+    ctx.strokeStyle='#ffffff';ctx.lineWidth=3;ctx.lineCap='round';ctx.lineJoin='round';canvasRoundRect(ctx,margin+12,40,24,27,5,null,'#ffffff');ctx.beginPath();ctx.moveTo(margin+12,48);ctx.lineTo(margin+36,48);ctx.moveTo(margin+19,35);ctx.lineTo(margin+19,44);ctx.moveTo(margin+29,35);ctx.lineTo(margin+29,44);ctx.moveTo(margin+17,56);ctx.lineTo(margin+21,60);ctx.lineTo(margin+30,52);ctx.stroke();
+    canvasText(ctx,'dayframe.',margin+62,52,260,30,colors.text,800);canvasText(ctx,calendarExportTitle(),margin+62,83,600,22,colors.accentDark,750);canvasText(ctx,`${state.mode} view · ${events.length} planner item${events.length===1?'':'s'}`,margin+62,108,600,13,colors.muted,500);
+    canvasText(ctx,'YOUR PLAN, IN ONE PLACE',logicalW-margin-290,54,290,12,colors.muted,750);canvasText(ctx,`Exported ${new Date().toLocaleDateString()}`,logicalW-margin-290,78,290,12,colors.muted,500);
+    ctx.strokeStyle=colors.line;ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(margin,135);ctx.lineTo(logicalW-margin,135);ctx.stroke();
+    const priorityColor=item=>item.priority==='urgent'?colors.red:item.priority==='high'?colors.orange:item.priority==='low'?colors.green:colors.blue;
+    const itemPrefix=item=>item.isMeeting?'Meeting':item.kind==='checklist'?'Checklist':item.kind==='note'?'Note':item.kind==='task'?'Task':'Event';
+    const drawEntry=(item,x,y,w,h,size=12)=>{const c=priorityColor(item);canvasRoundRect(ctx,x,y,w,h,5,c+'18',c);canvasRoundRect(ctx,x,y,4,h,2,c);const lead=(item.startTime?`${fmtTime(item.startTime)} · `:'')+(item.isMeeting?'◷ ':'');canvasText(ctx,lead+(item.title||'Untitled'),x+10,y+h*.66,w-18,size,item.done?colors.muted:c,650);};
+    if(state.mode==='Agenda'){
+      const start=fromDateKey(state.selected);
+      for(let i=0;i<14;i++){
+        const key=offsetDate(state.selected,i),y=gridTop-5+i*78;
+        if(i%2===0)canvasRoundRect(ctx,margin,y,logicalW-margin*2,70,10,colors.panel);
+        canvasText(ctx,dateLabel(key,{weekday:'short',month:'short',day:'numeric',year:'numeric'}),margin+18,y+26,260,14,colors.text,750);
+        const day=byDate.get(key)||[];if(!day.length)canvasText(ctx,'No items planned',margin+300,y+26,300,12,colors.muted,500);
+        const max=4;day.slice(0,max).forEach((item,j)=>drawEntry(item,margin+300+j*292,y+37,278,24,11));
+        if(day.length>max)canvasText(ctx,`+${day.length-max} more`,logicalW-margin-70,y+26,60,11,colors.muted,700);
+      }
+    } else {
+      const weekdayNames=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+      weekdayNames.forEach((name,i)=>{const x=margin+i*cellW;canvasRoundRect(ctx,x+2,gridTop-8,cellW-4,34,7,colors.panel2);ctx.textAlign='center';canvasText(ctx,name,x+cellW/2,gridTop+13,48,11,colors.muted,750);ctx.textAlign='left';});
+      cells.forEach((cell,index)=>{
+        const row=Math.floor(index/7),col=index%7,x=margin+col*cellW,y=gridTop+34+row*cellH;const day=byDate.get(cell.key)||[];
+        canvasRoundRect(ctx,x+2,y,cellW-4,cellH-4,7,cell.inside?colors.panel:colors.panel2,colors.line);
+        if(cell.key===toDateKey(new Date()))canvasRoundRect(ctx,x+2,y,cellW-4,4,2,colors.accent);
+        canvasText(ctx,String(cell.date.getDate()),x+12,y+23,50,13,cell.inside?colors.text:colors.muted,750);
+        if(cell.key===state.selected){ctx.strokeStyle=colors.accent;ctx.lineWidth=2;ctx.strokeRect(x+4,y+3,cellW-8,cellH-10);}
+        const max=state.mode==='Week'?8:3,entryH=state.mode==='Week'?25:23,entryGap=4,startY=y+33;
+        day.slice(0,max).forEach((item,j)=>drawEntry(item,x+7,startY+j*(entryH+entryGap),cellW-14,entryH,state.mode==='Week'?11:10));
+        if(day.length>max)canvasText(ctx,`+ ${day.length-max} more`,x+9,startY+max*(entryH+entryGap)+4,cellW-18,10,colors.muted,700);
+      });
+    }
+    const footerY=canvasH-58;ctx.strokeStyle=colors.line;ctx.beginPath();ctx.moveTo(margin,footerY);ctx.lineTo(logicalW-margin,footerY);ctx.stroke();
+    canvasText(ctx,'Dayframe · Plan · Focus · Achieve',margin,footerY+25,430,12,colors.muted,600);
+    canvasText(ctx,'Private to your account',logicalW-margin-220,footerY+25,220,12,colors.muted,500);
+    const blob=await new Promise((resolve,reject)=>canvas.toBlob(value=>value?resolve(value):reject(new Error('Your browser could not create the PNG file.')),'image/png'));
+    const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=`dayframe-calendar-${toDateKey(new Date())}-${state.mode.toLowerCase()}.png`;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1500);notify('Calendar image downloaded as a PNG.');
+  } catch(error){console.error('Calendar image export failed',error);notify(error.message||'Could not export the calendar image.');}
+  finally{if(button&&button.isConnected){button.disabled=false;button.textContent='▧ Export image';}}
+}
+document.addEventListener('click',event=>{const button=event.target.closest('#calendar-export-image');if(button){event.preventDefault();event.stopPropagation();void exportCalendarAsImage();}});
+
+// The static server entry is a sign-in-first, single-file build. No demo dashboard is shown.
+if('serviceWorker' in navigator&&!IS_FILE){
+ let pageHasController=!!navigator.serviceWorker.controller;
+ navigator.serviceWorker.addEventListener('controllerchange',()=>{if(pageHasController){window.location.reload();return}pageHasController=true;window.location.reload()},{once:true});
+ navigator.serviceWorker.register('./sw.js').then(registration=>registration.update()).catch(err=>console.warn('Service worker registration/update failed',err));
+}
+applyTheme();setAuthMode('login');if(IS_FILE){$('file-warning').classList.remove('hidden')}
+// Firebase Auth restores the remembered session automatically; new sessions are handled by onAuthStateChanged above.
+})();
+</script>
+</body>
+</html>
